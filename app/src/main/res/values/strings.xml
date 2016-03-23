@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Sample Android app</string>
+    <string name="credentials_prompt">Please enter your LabsMobile username and password</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="register">Register in the website</string>
+    <string name="register_prompt">Don\'t have an account?</string>
+    <string name="credentials_change_prompt">You can later change the credentials from the settings menu</string>
+    <string name="sms_services">SMS services</string>
+    <string name="query_services">Query Services</string>
+    <string name="otp_services">Phone Verification Service</string>
+    <string name="title_activity_sms">SMSActivity</string>
+    <string name="phone_number">Mobile number</string>
+    <string name="message_text_hint">Type in you message here</string>
+    <string name="send">Send</string>
+    <string name="phone_number_prompt">without the \'00\' code  or the \'+\' symbol</string>
+    <string name="title_activity_queries">QueriesActivity</string>
+    <string name="query_balance">Query balance</string>
+    <string name="query_prices">Query prices</string>
+    <string name="countries_prompt">Input the countries, separated with commas</string>
+    <string name="countries_hint">Countries</string>
+    <string name="settings">Settings</string>
+    <string name="login_details">Login details</string>
+</resources>
