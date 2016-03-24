@@ -10,6 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:focusableInTouchMode="true"
     tools:context="com.labsmobile.example.QueriesActivity"
     tools:showIn="@layout/activity_queries">
 
@@ -47,5 +48,21 @@
         android:text="@string/query_prices"
         android:id="@+id/query_prices_button"
         android:layout_gravity="center_horizontal" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:layout_gravity="center_horizontal" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/list_prices"
+        android:layout_gravity="center_horizontal"
+        android:divider="#e32727"
+        android:dividerHeight="2dp" />
 
 </LinearLayout>
