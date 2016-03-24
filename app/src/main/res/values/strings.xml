@@ -11,7 +11,7 @@
     <string name="otp_services">Phone Verification Service</string>
     <string name="title_activity_sms">SMSActivity</string>
     <string name="phone_number">Mobile number</string>
-    <string name="message_text_hint">Type in you message here</string>
+    <string name="message_text_hint">Type your message here</string>
     <string name="send">Send</string>
     <string name="phone_number_prompt">without the \'00\' code  or the \'+\' symbol</string>
     <string name="title_activity_queries">QueriesActivity</string>
@@ -24,4 +24,8 @@
     <string name="responseNOK">There was an error with the request.\\nCode: %1$s - Message: %2$s</string>
     <string name="balance_response">Your balance is: %1$s</string>
     <string name="responseError">An error occurred: %1$s</string>
+    <string name="send_sms_success">SMS sent successfully</string>
+    <string name="test_mode">Test mode</string>
+    <string name="unicode">Unicode</string>
+    <string name="long_message">Long message</string>
 </resources>

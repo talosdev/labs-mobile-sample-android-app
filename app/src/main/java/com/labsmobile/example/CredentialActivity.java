@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,8 +32,9 @@ public class CredentialActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        usernameEditText.addTextChangedListener(new UsernamePasswordTextWatcher(usernameEditText, passwordEditText, continueButton));
-        passwordEditText.addTextChangedListener(new UsernamePasswordTextWatcher(usernameEditText, passwordEditText, continueButton));
+        ButtonTogglingTextWatcher buttonToggler = new ButtonTogglingTextWatcher(continueButton, usernameEditText, passwordEditText);
+        usernameEditText.addTextChangedListener(buttonToggler);
+        passwordEditText.addTextChangedListener(buttonToggler);
 
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,37 +56,4 @@ public class CredentialActivity extends AppCompatActivity {
 
     }
 
-    private static class UsernamePasswordTextWatcher implements TextWatcher {
-
-        EditText usernameEditText;
-        EditText passwordEditText;
-        Button continueButton;
-
-        public UsernamePasswordTextWatcher(EditText usernameEditText, EditText passwordEditText, Button continueButton) {
-            this.usernameEditText = usernameEditText;
-            this.passwordEditText = passwordEditText;
-            this.continueButton = continueButton;
-
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (usernameEditText.getText().length()==0 ||
-                    passwordEditText.getText().length() == 0) {
-                continueButton.setEnabled(false);
-            } else {
-                continueButton.setEnabled(true);
-            }
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-    }
 }
