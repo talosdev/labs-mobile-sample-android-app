@@ -24,4 +24,5 @@
     <string name="responseNOK">There was an error with the request.\\nCode: %1$s - Message: %2$s</string>
     <string name="balance_response">Your balance is: %1$s</string>
     <string name="responseError">An error occurred: %1$s</string>
+    <string name="send_sms_success">SMS sent successfully</string>
 </resources>

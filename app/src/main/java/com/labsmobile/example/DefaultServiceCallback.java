@@ -11,7 +11,7 @@ import com.labsmobile.android.service.ServiceCallback;
  */
 abstract class DefaultServiceCallback<T> implements ServiceCallback<T> {
 
-    private Context context;
+    protected Context context;
 
     public DefaultServiceCallback(Context context) {
         this.context = context;

@@ -52,6 +52,7 @@ public class QueriesActivity extends BaseActivityWithMenu {
         setContentView(R.layout.activity_queries);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         queryService = LabsMobileServiceProvider.provideQueryService();
 
