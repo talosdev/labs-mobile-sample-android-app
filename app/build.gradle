@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.labsmobile.example"
+        minSdkVersion 9
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        buildTypes.each {
+            it.buildConfigField 'String', 'LABS_MOBILE_USERNAME', "\"$System.env.LABS_MOBILE_USERNAME\""
+            it.buildConfigField 'String', 'LABS_MOBILE_PASSWORD', "\"$System.env.LABS_MOBILE_PASSWORD\""
+            it.buildConfigField 'String', 'LABS_MOBILE_REAL_RECIPIENT', "\"$System.env.LABS_MOBILE_REAL_RECIPIENT\""
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile files('libs/labs-mobile-sdk.jar')
+
+
+    compile 'com.squareup.okhttp3:logging-interceptor:3.0.1'
+    compile 'com.squareup.retrofit2:retrofit:2.0.0'
+    compile('com.squareup.retrofit2:converter-simplexml:2.0.0-beta4') {
+        exclude group: 'xpp3', module: 'xpp3'
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'stax', module: 'stax'
+    }
+
+    compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.android.support:design:23.2.1'
+    testCompile 'junit:junit:4.12'
+}
