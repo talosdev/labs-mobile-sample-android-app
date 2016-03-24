@@ -5,4 +5,5 @@ package com.labsmobile.example;
  */
 public class Constants {
     public static final String LABS_MOBILE_REGISTRATION_URL = "http://www.labsmobile.com";
+
 }
