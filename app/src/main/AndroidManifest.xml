@@ -47,33 +47,16 @@
                 android:value="com.labsmobile.example.MainActivity" />
         </activity>
         <activity
-            android:name=".TwoFactorVerificationCheckActivity"
+            android:name=".CheckVerificationActivity"
             android:label="@string/title_activity_two_factor_verification_check"
             android:parentActivityName=".TwoFactorVerificationIndexActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".TwoFactorVerificationRequestActivity"
-            android:label="@string/title_activity_two_factor_verification_request"
+            android:name=".TwoFactorVerificationActivity"
+            android:label="@string/title_activity_two_factor_verification"
             android:parentActivityName=".TwoFactorVerificationIndexActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".TwoFactorVerificationCodeActivity"
-            android:label="@string/title_activity_two_step_verification_code"
-            android:parentActivityName=".TwoFactorVerificationIndexActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.labsmobile.example.TwoFactorVerificationIndexActivity" />
-        </activity>
-        <activity
-            android:name=".TwoFactorVerificationResultActivity"
-            android:label="@string/title_activity_two_factor_verification_result"
-            android:parentActivityName=".TwoFactorVerificationIndexActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.labsmobile.example.TwoFactorVerificationIndexActivity" />
-        </activity>
+
     </application>
 
 </manifest>

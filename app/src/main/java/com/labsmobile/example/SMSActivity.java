@@ -20,7 +20,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SMSActivity extends BaseActivityWithMenu {
+public class SMSActivity extends BaseActivity {
 
     @Bind(R.id.phone_number)
     EditText phoneNumberEditText;

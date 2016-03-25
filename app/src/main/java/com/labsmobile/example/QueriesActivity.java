@@ -26,7 +26,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class QueriesActivity extends BaseActivityWithMenu {
+public class QueriesActivity extends BaseActivity {
 
     @Bind(R.id.query_balance_button)
     Button queryBalanceButton;

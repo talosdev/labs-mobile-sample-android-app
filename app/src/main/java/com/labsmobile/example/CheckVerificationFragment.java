@@ -1,23 +1,32 @@
 package com.labsmobile.example;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.labsmobile.android.model.OTPCheckRequest;
+import com.labsmobile.android.service.OTPService;
 
 import butterknife.OnClick;
 
-public class TwoFactorVerificationCheckActivity extends TwoFactorVerificationBaseActivity {
+/**
+ * Created by apapad on 25/03/16.
+ */
+public class CheckVerificationFragment extends PhoneAndActionFragment {
 
+    private OTPService otpService;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        otpService = LabsMobileServiceProvider.provideOTPService();
 
         button.setText(R.string.check);
+        return rootView;
     }
 
     @OnClick(R.id.button)
@@ -26,30 +35,24 @@ public class TwoFactorVerificationCheckActivity extends TwoFactorVerificationBas
 
         OTPCheckRequest request = new OTPCheckRequest(phoneNumberEditText.getText().toString());
 
-        otpService.checkCode(request, new DefaultServiceCallback<Boolean>(TwoFactorVerificationCheckActivity.this) {
+        otpService.checkCode(request, new DefaultServiceCallback<Boolean>(getActivity()) {
             @Override
             public void onResponseOK(Boolean aBoolean) {
                 progressBar.setVisibility(View.GONE);
 
                 if (aBoolean == null) {
-                    Toast.makeText(TwoFactorVerificationCheckActivity.this,
+                    Toast.makeText(getActivity(),
                             R.string.tfv_check_noCode,
                             Toast.LENGTH_LONG).show();
                 } else {
 
-                    Toast.makeText(TwoFactorVerificationCheckActivity.this,
+                    Toast.makeText(getActivity(),
                             aBoolean.booleanValue() ? R.string.tfv_check_verified : R.string.tfv_check_not_verified,
                             Toast.LENGTH_LONG).show();
                 }
             }
         });
 
-    }
-
-
-    public static Intent newIntent(Context context) {
-        Intent i = new Intent(context, TwoFactorVerificationCheckActivity.class);
-        return i;
     }
 
 }

@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class TwoFactorVerificationIndexActivity extends BaseActivityWithMenu {
+public class TwoFactorVerificationIndexActivity extends BaseActivity {
 
 
 
@@ -27,13 +27,13 @@ public class TwoFactorVerificationIndexActivity extends BaseActivityWithMenu {
 
     @OnClick(R.id.button)
     public void onCheckButton() {
-        startActivity(TwoFactorVerificationCheckActivity.newIntent(this));
+        startActivity(CheckVerificationActivity.newIntent(this));
     }
 
 
     @OnClick(R.id.request_button)
     public void onRequestButton() {
-        startActivity(TwoFactorVerificationRequestActivity.newIntent(this));
+        startActivity(TwoFactorVerificationActivity.newIntent(this));
     }
 
     public static Intent newIntent(Context context) {

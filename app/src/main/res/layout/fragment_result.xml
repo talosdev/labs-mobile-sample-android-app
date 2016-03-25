@@ -9,8 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.labsmobile.example.TwoFactorVerificationResultActivity"
-    tools:showIn="@layout/activity_tfv_result">
+    tools:context="com.labsmobile.example.TwoFactorVerificationResultActivity">
 
     <LinearLayout
         android:orientation="vertical"

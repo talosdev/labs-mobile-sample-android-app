@@ -50,4 +50,5 @@
     <string name="title_activity_two_factor_verification_result">Result</string>
     <string name="verificationNOK">We were not able to verify your mobile number, please try again.</string>
     <string name="verificationOK">Your number has been verified!</string>
+    <string name="title_activity_two_factor_verification">Two factor verification</string>
 </resources>
