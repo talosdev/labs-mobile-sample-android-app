@@ -24,8 +24,7 @@ public class TwoFactorVerificationCheckActivity extends TwoFactorVerificationBas
     public void onCheckButtonClick() {
         progressBar.setVisibility(View.VISIBLE);
 
-        OTPCheckRequest request = new OTPCheckRequest(phoneNumberEditText.getText().toString(),
-                envEditText.getText().toString());
+        OTPCheckRequest request = new OTPCheckRequest(phoneNumberEditText.getText().toString());
 
         otpService.checkCode(request, new DefaultServiceCallback<Boolean>(TwoFactorVerificationCheckActivity.this) {
             @Override

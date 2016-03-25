@@ -25,6 +25,9 @@ public class CredentialActivity extends AppCompatActivity {
     @Bind(R.id.credentials_password)
     EditText passwordEditText;
 
+    @Bind(R.id.env)
+    EditText envEditText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +42,9 @@ public class CredentialActivity extends AppCompatActivity {
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LabsMobileServiceProvider.init(usernameEditText.getText().toString(), passwordEditText.getText().toString());
+                LabsMobileServiceProvider.init(usernameEditText.getText().toString(),
+                        passwordEditText.getText().toString(),
+                        envEditText.getText().toString());
 
                 startActivity(MainActivity.newIntent(CredentialActivity.this));
             }

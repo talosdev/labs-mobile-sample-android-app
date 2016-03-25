@@ -31,7 +31,6 @@ public class TwoFactorVerificationRequestActivity extends TwoFactorVerificationB
         progressBar.setVisibility(View.VISIBLE);
 
         OTPRequest request = new OTPRequest(phoneNumberEditText.getText().toString(),
-                envEditText.getText().toString(),
                 getResources().getString(R.string.otp_message),
                 getResources().getString(R.string.otp_message_sender));
 

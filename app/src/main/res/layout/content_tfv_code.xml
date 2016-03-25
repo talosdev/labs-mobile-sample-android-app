@@ -12,4 +12,43 @@
     tools:context=".TwoFactorVerificationCodeActivity"
     tools:showIn="@layout/activity_tfv_code">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:id="@+id/linearLayout2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tfv_code_text"
+            android:id="@+id/tfv_code_text" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tfv_code_prompt"
+            android:id="@+id/tfv_code_prompt"
+            android:layout_marginTop="40dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/otp"
+            android:layout_below="@+id/linearLayout2"
+            android:layout_centerHorizontal="true"
+            android:hint="@string/otp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ok"
+            android:id="@+id/button"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
 </RelativeLayout>

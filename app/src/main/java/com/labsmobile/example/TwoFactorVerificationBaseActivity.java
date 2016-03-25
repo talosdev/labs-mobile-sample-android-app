@@ -16,12 +16,13 @@ import butterknife.ButterKnife;
  */
 public class TwoFactorVerificationBaseActivity extends BaseActivityWithMenu {
     protected OTPService otpService;
+
     @Bind(R.id.phone_number)
     EditText phoneNumberEditText;
-    @Bind(R.id.env)
-    EditText envEditText;
+
     @Bind(R.id.progressBar)
     ProgressBar progressBar;
+
     @Bind(R.id.button)
     Button button;
 
