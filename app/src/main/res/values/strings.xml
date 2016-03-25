@@ -37,16 +37,17 @@
     <string name="env_hint">environment (optional)</string>
     <string name="check">Check</string>
     <string name="request">Request code via SMS</string>
-    <string name="tfv_check_verified">The number has been verified.</string>
+    <string name="tfv_check_verified">The number is verified.</string>
     <string name="tfv_check_not_verified">A verification process is pending.</string>
     <string name="tfv_check_noCode">The number is not verified and there is no verification process in progress.</string>
     <string name="otp_message">Sample app verification code: \u0025CODE\u0025. Have a nice day!</string>
     <string name="otp_message_sender">Sample app</string>
-    <string name="title_activity_two_step_verification_code">TwoStepVerificationCodeActivity
-    </string>
+    <string name="title_activity_two_step_verification_code">Verification code</string>
     <string name="tfv_code_text">You will soon receive an SMS with a code and your number will be automatically verified.</string>
     <string name="tfv_code_prompt">In case you receive the SMS and we fail to automatically extract the code, please enter the code in the box below.</string>
     <string name="otp">Code</string>
     <string name="ok">OK</string>
     <string name="title_activity_two_factor_verification_result">Result</string>
+    <string name="verificationNOK">We were not able to verify your mobile number, please try again.</string>
+    <string name="verificationOK">Your number has been verified!</string>
 </resources>

@@ -32,7 +32,8 @@ public class TwoFactorVerificationRequestActivity extends TwoFactorVerificationB
     public void onRequestButtonClick() {
         progressBar.setVisibility(View.VISIBLE);
 
-        OTPRequest request = new OTPRequest(phoneNumberEditText.getText().toString(),
+        final String phoneNumber = phoneNumberEditText.getText().toString();
+        OTPRequest request = new OTPRequest(phoneNumber,
                 getResources().getString(R.string.otp_message),
                 getResources().getString(R.string.otp_message_sender));
 
@@ -42,7 +43,7 @@ public class TwoFactorVerificationRequestActivity extends TwoFactorVerificationB
             public void onResponseOK(Boolean aBoolean) {
                 progressBar.setVisibility(View.GONE);
 
-                startActivity(TwoFactorVerificationCodeActivity.newIntent(TwoFactorVerificationRequestActivity.this));
+                startActivity(TwoFactorVerificationCodeActivity.newIntent(TwoFactorVerificationRequestActivity.this, phoneNumber));
             }
         });
 

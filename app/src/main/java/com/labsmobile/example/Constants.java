@@ -6,4 +6,6 @@ package com.labsmobile.example;
 public class Constants {
     public static final String LABS_MOBILE_REGISTRATION_URL = "http://www.labsmobile.com";
 
+    public static final String EXTRA_PHONE_NUMBER = "com.labsmobile.extra.PHONE_NUMBER";
+    public static final String EXTRA_CODE = "com.labsmobile.extra.CODE";
 }

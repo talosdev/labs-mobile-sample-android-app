@@ -12,4 +12,29 @@
     tools:context="com.labsmobile.example.TwoFactorVerificationResultActivity"
     tools:showIn="@layout/activity_tfv_result">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:id="@+id/linearLayout2">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/result"
+            android:layout_below="@+id/linearLayout2"
+            android:layout_centerHorizontal="true" />
+    </LinearLayout>
+
 </RelativeLayout>
