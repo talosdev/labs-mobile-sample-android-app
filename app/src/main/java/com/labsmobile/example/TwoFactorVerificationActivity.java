@@ -1,12 +1,15 @@
 package com.labsmobile.example;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 
 import com.labsmobile.android.service.OTPService;
+import com.labsmobile.example.receiver.OTPBroadcastReceiver;
 
 /**
  * Created by apapad on 25/03/16.
@@ -14,6 +17,8 @@ import com.labsmobile.android.service.OTPService;
 public class TwoFactorVerificationActivity extends BaseActivity implements Navigator {
 
     protected OTPService otpService;
+
+    private BroadcastReceiver receiver;
 
 
     @Override
@@ -30,6 +35,16 @@ public class TwoFactorVerificationActivity extends BaseActivity implements Navig
         fragmentTransaction.add(R.id.fragment, f)
                 .addToBackStack(null)
                 .commit();
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("android.provider.Telephony.SMS_RECEIVED");
+
+         receiver = new OTPBroadcastReceiver(
+                getResources().getString(R.string.otp_message_sender),
+                getResources().getString(R.string.otp_message));
+
+        registerReceiver(receiver, filter);
+
     }
 
     public static Intent newIntent(Context context) {
@@ -53,5 +68,11 @@ public class TwoFactorVerificationActivity extends BaseActivity implements Navig
         fragmentTransaction.replace(R.id.fragment, f)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receiver);
     }
 }
