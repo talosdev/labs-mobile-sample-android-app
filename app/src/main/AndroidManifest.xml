@@ -2,9 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.labsmobile.example">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
-
 
     <application
         android:allowBackup="true"
@@ -38,6 +36,29 @@
             android:name=".QueriesActivity"
             android:label="@string/title_activity_queries"
             android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".TwoFactorVerificationIndexActivity"
+            android:label="@string/title_activity_otp"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.labsmobile.example.MainActivity" />
+        </activity>
+        <activity
+            android:name=".TwoFactorVerificationCheckActivity"
+            android:label="@string/title_activity_two_factor_verification_check"
+            android:parentActivityName=".TwoFactorVerificationIndexActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".TwoFactorVerificationRequestActivity"
+            android:label="@string/title_activity_two_factor_verification_request"
+            android:parentActivityName=".TwoFactorVerificationIndexActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".TwoFactorVerificationCodeActivity"
+            android:label="@string/title_activity_two_step_verification_code"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
