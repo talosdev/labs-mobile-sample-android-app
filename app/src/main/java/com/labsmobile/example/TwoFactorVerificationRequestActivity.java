@@ -24,6 +24,8 @@ public class TwoFactorVerificationRequestActivity extends TwoFactorVerificationB
         super.onCreate(savedInstanceState);
 
         button.setText(R.string.request);
+
+
     }
 
     @OnClick(R.id.button)

@@ -21,7 +21,7 @@
     <string name="countries_hint">Countries</string>
     <string name="settings">Settings</string>
     <string name="login_details">Login details</string>
-    <string name="responseNOK">There was an error with the request.\\nCode: %1$s - Message: %2$s</string>
+    <string name="responseNOK">There was an error with the request. Code: %1$s - Message: %2$s</string>
     <string name="balance_response">Your balance is: %1$s</string>
     <string name="responseError">An error occurred: %1$s</string>
     <string name="send_sms_success">SMS sent successfully</string>
@@ -33,7 +33,7 @@
     <string name="tfv_check_button">Check if number is verified</string>
     <string name="title_activity_two_factor_verification_check">Check verification
     </string>
-    <string name="title_activity_two_factor_verification_request">Request verification</string>
+    <string name="title_activity_two_factor_verification_request">Request code</string>
     <string name="env_hint">environment (optional)</string>
     <string name="check">Check</string>
     <string name="request">Request code via SMS</string>
