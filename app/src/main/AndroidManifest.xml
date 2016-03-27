@@ -59,6 +59,10 @@
             android:parentActivityName=".TwoFactorVerificationIndexActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
+
+
+        <service
+            android:name=".receiver.DefaultOTPVerificationService"/>
     </application>
 
 </manifest>

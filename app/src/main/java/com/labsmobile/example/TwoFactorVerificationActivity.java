@@ -7,8 +7,11 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import com.labsmobile.android.service.OTPService;
+import com.labsmobile.example.receiver.DefaultOTPBroadcastReceiver;
+import com.labsmobile.example.receiver.DefaultOTPVerificationService;
 import com.labsmobile.example.receiver.OTPBroadcastReceiver;
 
 /**
@@ -36,15 +39,6 @@ public class TwoFactorVerificationActivity extends BaseActivity implements Navig
                 .addToBackStack(null)
                 .commit();
 
-        IntentFilter filter = new IntentFilter();
-        filter.addAction("android.provider.Telephony.SMS_RECEIVED");
-
-         receiver = new OTPBroadcastReceiver(
-                getResources().getString(R.string.otp_message_sender),
-                getResources().getString(R.string.otp_message));
-
-        registerReceiver(receiver, filter);
-
     }
 
     public static Intent newIntent(Context context) {
@@ -54,11 +48,29 @@ public class TwoFactorVerificationActivity extends BaseActivity implements Navig
 
     @Override
     public void onCodeRequested(String phoneNumber) {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        ValidateCodeFragment f = ValidateCodeFragment.newInstance(phoneNumber);
-        fragmentTransaction.replace(R.id.fragment, f)
-                .addToBackStack(null)
-                .commit();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("android.provider.Telephony.SMS_RECEIVED");
+
+        //TODO values
+        receiver = new DefaultOTPBroadcastReceiver(
+                getResources().getString(R.string.otp_message_sender),
+                getResources().getString(R.string.otp_message),
+                phoneNumber,
+                DefaultOTPVerificationService.class,
+                BuildConfig.LABS_MOBILE_USERNAME,
+                BuildConfig.LABS_MOBILE_PASSWORD,
+                "asd"
+        );
+
+        registerReceiver(receiver, filter);
+        Log.d(OTPBroadcastReceiver.TAG, "Registered OTPBroadcastReceiver");
+
+        //TODO enable this
+//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//        ValidateCodeFragment f = ValidateCodeFragment.newInstance(phoneNumber);
+//        fragmentTransaction.replace(R.id.fragment, f)
+//                .addToBackStack(null)
+//                .commit();
     }
 
     @Override
@@ -73,6 +85,8 @@ public class TwoFactorVerificationActivity extends BaseActivity implements Navig
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(receiver);
+        if (receiver != null) {
+            unregisterReceiver(receiver);
+        }
     }
 }
