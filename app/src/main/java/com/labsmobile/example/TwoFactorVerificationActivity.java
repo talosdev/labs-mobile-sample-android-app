@@ -6,13 +6,16 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.labsmobile.android.service.OTPService;
 import com.labsmobile.example.receiver.DefaultOTPBroadcastReceiver;
 import com.labsmobile.example.receiver.DefaultOTPVerificationService;
 import com.labsmobile.example.receiver.OTPBroadcastReceiver;
+import com.labsmobile.example.receiver.OTPVerificationService;
 
 /**
  * Created by apapad on 25/03/16.
@@ -27,17 +30,21 @@ public class TwoFactorVerificationActivity extends BaseActivity implements Navig
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tfv_execute);
+        setContentView(R.layout.activity_tfv);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        RequestCodeFragment f = RequestCodeFragment.newInstance();
+        CheckStatusFragment f = CheckStatusFragment.newInstance();
         fragmentTransaction.add(R.id.fragment, f)
                 .addToBackStack(null)
                 .commit();
+
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                new VerificationCompleteReceiver(), new IntentFilter(OTPVerificationService.VERIFICATION_SUCCESS));
 
     }
 
@@ -47,11 +54,12 @@ public class TwoFactorVerificationActivity extends BaseActivity implements Navig
     }
 
     @Override
-    public void onCodeRequested(String phoneNumber) {
+    public void onPendingRequest(String phoneNumber) {
         IntentFilter filter = new IntentFilter();
         filter.addAction("android.provider.Telephony.SMS_RECEIVED");
 
         //TODO values
+        // TODO move this
         receiver = new DefaultOTPBroadcastReceiver(
                 getResources().getString(R.string.otp_message_sender),
                 getResources().getString(R.string.otp_message),
@@ -59,26 +67,34 @@ public class TwoFactorVerificationActivity extends BaseActivity implements Navig
                 DefaultOTPVerificationService.class,
                 BuildConfig.LABS_MOBILE_USERNAME,
                 BuildConfig.LABS_MOBILE_PASSWORD,
-                "asd"
+                "aza"
         );
 
         registerReceiver(receiver, filter);
         Log.d(OTPBroadcastReceiver.TAG, "Registered OTPBroadcastReceiver");
 
-        //TODO enable this
-//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//        ValidateCodeFragment f = ValidateCodeFragment.newInstance(phoneNumber);
-//        fragmentTransaction.replace(R.id.fragment, f)
-//                .addToBackStack(null)
-//                .commit();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        RequestPendingFragment f = RequestPendingFragment.newInstance(phoneNumber);
+        fragmentTransaction.replace(R.id.fragment, f)
+      //          .addToBackStack(null)
+                .commit();
     }
 
     @Override
-    public void onCodeVerification(String phoneNumber, String code) {
+    public void onNumberVerified(String phoneNumber) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        VerificationResultFragment f = VerificationResultFragment.newInstance(phoneNumber, code);
+        VerificationSuccessFragment f = VerificationSuccessFragment.newInstance(phoneNumber);
         fragmentTransaction.replace(R.id.fragment, f)
                 .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void onNoPendingRequest(String phoneNumber) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        NotVerifiedFragment f = NotVerifiedFragment.newInstance(phoneNumber);
+        fragmentTransaction.replace(R.id.fragment, f)
+                //          .addToBackStack(null)
                 .commit();
     }
 
@@ -87,6 +103,16 @@ public class TwoFactorVerificationActivity extends BaseActivity implements Navig
         super.onDestroy();
         if (receiver != null) {
             unregisterReceiver(receiver);
+        }
+    }
+
+
+    class VerificationCompleteReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //TODO
+            Toast.makeText(TwoFactorVerificationActivity.this, "YEAAAH!", Toast.LENGTH_LONG).show();
         }
     }
 }

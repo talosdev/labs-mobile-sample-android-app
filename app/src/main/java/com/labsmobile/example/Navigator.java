@@ -5,8 +5,10 @@ package com.labsmobile.example;
  */
 public interface Navigator {
 
-    void onCodeRequested(String phoneNumber);
+    void onPendingRequest(String phoneNumber);
 
 
-    void onCodeVerification(String phoneNumber, String code);
+    void onNumberVerified(String phoneNumber);
+
+    void onNoPendingRequest(String phoneNumber);
 }

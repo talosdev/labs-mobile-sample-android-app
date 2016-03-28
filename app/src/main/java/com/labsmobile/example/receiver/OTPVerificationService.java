@@ -18,6 +18,7 @@ public abstract class OTPVerificationService extends IntentService {
     public static final String EXTRA_PHONE_NUMBER = "com.labsmobile.PHONE_NUMBER";
 
     protected static final String TAG = "OTP_VERIF_SERVICE";
+    public static final String VERIFICATION_SUCCESS = "com.labsnmobile.VERIFICATION_SUCCESS";
 
     protected OTPService otpService;
     protected String phoneNumber;

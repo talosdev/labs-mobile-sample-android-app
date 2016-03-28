@@ -39,24 +39,12 @@
             android:label="@string/title_activity_queries"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".TwoFactorVerificationIndexActivity"
-            android:label="@string/title_activity_otp"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.labsmobile.example.MainActivity" />
-        </activity>
-        <activity
-            android:name=".CheckVerificationActivity"
-            android:label="@string/title_activity_two_factor_verification_check"
-            android:parentActivityName=".TwoFactorVerificationIndexActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+
+
         <activity
             android:name=".TwoFactorVerificationActivity"
             android:label="@string/title_activity_two_factor_verification"
-            android:parentActivityName=".TwoFactorVerificationIndexActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
 

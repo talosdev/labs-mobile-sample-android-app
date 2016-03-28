@@ -51,4 +51,8 @@
     <string name="verificationNOK">We were not able to verify your mobile number, please try again.</string>
     <string name="verificationOK">Your number has been verified!</string>
     <string name="title_activity_two_factor_verification">Two factor verification</string>
+    <string name="request_new_code">Request new code</string>
+    <string name="request_new_code_prompt">OR request a new code and start the process again</string>
+    <string name="check_status">Check verification status</string>
+    <string name="request_code_prompt">Your number is not verified. Please use the button below to request a code.</string>
 </resources>

@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.otp_services_button)
     public void onOTPButton() {
-        startActivity(TwoFactorVerificationIndexActivity.newIntent(MainActivity.this));
+        startActivity(TwoFactorVerificationActivity.newIntent(MainActivity.this));
     }
 
     public static Intent newIntent(Context context) {

@@ -1,13 +1,12 @@
 package com.labsmobile.example.receiver;
 
 import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.labsmobile.android.error.GenericError;
 import com.labsmobile.android.model.OTPValidationRequest;
 import com.labsmobile.android.service.ServiceCallback;
-import com.labsmobile.example.R;
 
 /**
  * Created by apapad on 27/03/16.
@@ -37,8 +36,14 @@ public class DefaultOTPVerificationService extends OTPVerificationService {
 
                 if (aBoolean.booleanValue()) {
                     Log.d(TAG, "SUCCESS");
-                    //TODO
-                    Toast.makeText(getBaseContext(), R.string.verificationOK, Toast.LENGTH_LONG).show();
+
+                    Intent intent = new Intent(VERIFICATION_SUCCESS);
+
+//                    intent.putExtra("currentSpeed", currentSpeed);
+//                    intent.putExtra("latitude", latitude);
+//                    intent.putExtra("longitude", longitude);
+                    LocalBroadcastManager.getInstance(DefaultOTPVerificationService.this).sendBroadcast(intent);
+
                 } else {
                     Log.d(TAG, "The number could not be verified");
                 }
