@@ -89,7 +89,7 @@ public class CheckStatusFragment extends Fragment {
 
                 if (aBoolean == null) {
                     Log.d(TAG, "Number not verified, and no pending process");
-                    navigator.onNoPendingRequest(phoneNumber);
+                    navigator.onCheckResult(phoneNumber, false);
 
                 } else {
                     if (aBoolean.booleanValue()) {
@@ -97,7 +97,7 @@ public class CheckStatusFragment extends Fragment {
                         navigator.onNumberVerified(phoneNumber);
                     } else {
                         Log.d(TAG, "Number not verified, but process in progress");
-                        navigator.onPendingRequest(phoneNumber);
+                        navigator.onCheckResult(phoneNumber, true);
                     }
 
                 }

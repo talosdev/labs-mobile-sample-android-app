@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
@@ -25,6 +26,7 @@ public class TwoFactorVerificationActivity extends BaseActivity implements Navig
     protected OTPService otpService;
 
     private BroadcastReceiver receiver;
+    private String TAG = "OTP";
 
 
     @Override
@@ -53,31 +55,23 @@ public class TwoFactorVerificationActivity extends BaseActivity implements Navig
         return i;
     }
 
+
+
     @Override
-    public void onPendingRequest(String phoneNumber) {
-        IntentFilter filter = new IntentFilter();
-        filter.addAction("android.provider.Telephony.SMS_RECEIVED");
-
-        //TODO values
-        // TODO move this
-        receiver = new DefaultOTPBroadcastReceiver(
-                getResources().getString(R.string.otp_message_sender),
-                getResources().getString(R.string.otp_message),
-                phoneNumber,
-                DefaultOTPVerificationService.class,
-                BuildConfig.LABS_MOBILE_USERNAME,
-                BuildConfig.LABS_MOBILE_PASSWORD,
-                "aza"
-        );
-
-        registerReceiver(receiver, filter);
-        Log.d(OTPBroadcastReceiver.TAG, "Registered OTPBroadcastReceiver");
-
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        RequestPendingFragment f = RequestPendingFragment.newInstance(phoneNumber);
-        fragmentTransaction.replace(R.id.fragment, f)
-      //          .addToBackStack(null)
-                .commit();
+    public void onCheckResult(String phoneNumber, boolean pendingRequestExists) {
+        if (!pendingRequestExists) {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            NotVerifiedFragment f = NotVerifiedFragment.newInstance(phoneNumber);
+            fragmentTransaction.replace(R.id.fragment, f)
+                    //          .addToBackStack(null)
+                    .commit();
+        } else {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            RequestPendingFragment f = RequestPendingFragment.newInstance(phoneNumber, false);
+            fragmentTransaction.replace(R.id.fragment, f)
+                    //          .addToBackStack(null)
+                    .commit();
+        }
     }
 
     @Override
@@ -90,13 +84,43 @@ public class TwoFactorVerificationActivity extends BaseActivity implements Navig
     }
 
     @Override
-    public void onNoPendingRequest(String phoneNumber) {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        NotVerifiedFragment f = NotVerifiedFragment.newInstance(phoneNumber);
-        fragmentTransaction.replace(R.id.fragment, f)
-                //          .addToBackStack(null)
-                .commit();
+    public void onCodeRequested(String phoneNumber) {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("android.provider.Telephony.SMS_RECEIVED");
+
+
+        SharedPreferences sharedpreferences = getSharedPreferences(Constants.SHARED_PREFS, Context.MODE_PRIVATE);
+        String username = sharedpreferences.getString(Constants.SHARED_PREFS_USERNAME, null);
+        String password = sharedpreferences.getString(Constants.SHARED_PREFS_PASSWORD, null);
+        String env = sharedpreferences.getString(Constants.SHARED_PREFS_ENV, null);
+
+        if (username == null || password == null || env == null) {
+            Log.e(TAG, "There was an error reading from SharedPreferences");
+            Toast.makeText(this, R.string.error_shared_prefs, Toast.LENGTH_LONG).show();
+        } else {
+
+            // TODO move this
+            receiver = new DefaultOTPBroadcastReceiver(
+                    getResources().getString(R.string.otp_message_sender),
+                    getResources().getString(R.string.otp_message),
+                    phoneNumber,
+                    DefaultOTPVerificationService.class,
+                    username,
+                    password,
+                    env
+            );
+
+            registerReceiver(receiver, filter);
+            Log.d(OTPBroadcastReceiver.TAG, "Registered OTPBroadcastReceiver");
+
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            RequestPendingFragment f = RequestPendingFragment.newInstance(phoneNumber, true);
+            fragmentTransaction.replace(R.id.fragment, f)
+                    //          .addToBackStack(null)
+                    .commit();
+        }
     }
+
 
     @Override
     protected void onDestroy() {

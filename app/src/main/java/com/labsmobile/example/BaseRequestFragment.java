@@ -47,12 +47,14 @@ public class BaseRequestFragment extends Fragment {
     @OnClick(R.id.button_request_code)
     public void onRequestCode() {
         final String phoneNumber = getArguments().getString(Constants.EXTRA_PHONE_NUMBER);
-        OTPRequest request = new OTPRequest(phoneNumber);
+        OTPRequest request = new OTPRequest(phoneNumber,
+                getResources().getString(R.string.otp_message),
+                getResources().getString(R.string.otp_message_sender));
 
         otpService.sendCode(request, new DefaultServiceCallback<Boolean>(getActivity()) {
             @Override
             public void onResponseOK(Boolean aBoolean) {
-                navigator.onPendingRequest(phoneNumber);
+                navigator.onCodeRequested(phoneNumber);
             }
         });
 

@@ -1,58 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:gravity="center_horizontal"
+    android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
     android:layout_centerHorizontal="true"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tfv_code_text"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/tfv_code_text" />
+    <LinearLayout
+        android:id="@+id/prompt_pending_new"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tfv_prompt_new_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tfv_prompt_new_1" />
 
 
-    <TextView
-        android:id="@+id/tfv_code_prompt"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_width="wrap_content"
-        android:text="@string/tfv_code_prompt" />
+        <TextView
+            android:id="@+id/tfv_prompt_new_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/tfv_prompt_new_2" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/prompt_pending_old"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tfv_prompt_old_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tfv_prompt_old_1" />
+
+
+        <TextView
+            android:id="@+id/tfv_prompt_old_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/tfv_prompt_old_2" />
+
+    </LinearLayout>
+
 
     <EditText
-        android:hint="@string/otp"
         android:id="@+id/otp"
-        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content" />
+        android:layout_centerHorizontal="true"
+        android:hint="@string/otp" />
 
     <Button
         android:id="@+id/button_ok"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="@string/ok" />
 
     <ProgressBar
-        style="?android:attr/progressBarStyleSmall"
         android:id="@+id/progressBar_manual"
-        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyleSmall"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:visibility="invisible" />
 
     <View
-        android:layout_height="50dp"
-        android:layout_width="match_parent" />
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
 
     <TextView
         android:id="@+id/request_new_code_prompt"
-        android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:text="@string/request_new_code_prompt" />
 
 

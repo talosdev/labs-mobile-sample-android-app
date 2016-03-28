@@ -26,6 +26,12 @@ public class RequestPendingFragment extends BaseRequestFragment {
     @Bind(R.id.progressBar_manual)
     ProgressBar progressBarManual;
 
+    @Bind(R.id.prompt_pending_new)
+    View promptsNewCode;
+
+    @Bind(R.id.prompt_pending_old)
+    View promptsOldCode;
+
 
     @Bind(R.id.otp)
     TextView codeEditText;
@@ -35,9 +41,16 @@ public class RequestPendingFragment extends BaseRequestFragment {
     public RequestPendingFragment() {
     }
 
-    public static RequestPendingFragment newInstance(String phoneNumber) {
+    /**
+     * @param phoneNumber
+     * @param codeJustRequested Whether a code has just been requested, or whether we are coming here after a check
+     *                          that showed that a pending request already exists.
+     * @return
+     */
+    public static RequestPendingFragment newInstance(String phoneNumber, boolean codeJustRequested) {
         RequestPendingFragment f = new RequestPendingFragment();
         Bundle b = f.getBaseArgs(phoneNumber);
+        b.putBoolean(Constants.EXTRA_REQUESTED, codeJustRequested);
 
         f.setArguments(b);
         return f;
@@ -58,6 +71,12 @@ public class RequestPendingFragment extends BaseRequestFragment {
 
         otpService = LabsMobileServiceProvider.provideOTPService();
 
+        if (getArguments().getBoolean(Constants.EXTRA_REQUESTED)) {
+            promptsNewCode.setVisibility(View.VISIBLE);
+        } else {
+            promptsOldCode.setVisibility(View.VISIBLE);
+        }
+
         return rootView;
     }
 
@@ -66,18 +85,26 @@ public class RequestPendingFragment extends BaseRequestFragment {
 
         progressBarManual.setVisibility(View.VISIBLE);
 
-        final String code =  codeEditText.getText().toString();
+        final String code = codeEditText.getText().toString();
 
         OTPValidationRequest request = new OTPValidationRequest(
                 getArguments().getString(Constants.EXTRA_PHONE_NUMBER),
-               code
+                code
         );
 
         otpService.validateCode(request, new ServiceCallback<Boolean>() {
             @Override
             public void onResponseOK(Boolean aBoolean) {
                 progressBarManual.setVisibility(View.INVISIBLE);
-                navigator.onNumberVerified(getArguments().getString(Constants.EXTRA_PHONE_NUMBER));
+                if (aBoolean.booleanValue()) {
+                    navigator.onNumberVerified(getArguments().getString(Constants.EXTRA_PHONE_NUMBER));
+                } else {
+                    Toast.makeText(getActivity(),
+                            R.string.code_invalid,
+                            Toast.LENGTH_LONG).show();
+                    codeEditText.setText("");
+                }
+
             }
 
             @Override
