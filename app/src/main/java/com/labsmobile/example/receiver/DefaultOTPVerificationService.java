@@ -22,7 +22,7 @@ public class DefaultOTPVerificationService extends OTPVerificationService {
     @Override
     protected void onHandleIntent(Intent intent) {
 
-        extractIntentParmas(intent);
+        extractIntentParams(intent);
         Log.d(TAG, "Handling an intent: " + code + " - " + phoneNumber);
         OTPValidationRequest request = new OTPValidationRequest(phoneNumber, code);
 
@@ -38,7 +38,7 @@ public class DefaultOTPVerificationService extends OTPVerificationService {
                     Log.d(TAG, "SUCCESS");
 
                     Intent intent = new Intent(VERIFICATION_SUCCESS);
-
+                    Log.d(TAG, "Sending broadcast");
                     LocalBroadcastManager.getInstance(DefaultOTPVerificationService.this).sendBroadcast(intent);
 
                 } else {

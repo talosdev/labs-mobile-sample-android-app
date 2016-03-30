@@ -120,7 +120,7 @@ public class TwoFactorVerificationActivity extends BaseActivity implements Navig
             successFilter.addAction(OTPVerificationService.VERIFICATION_SUCCESS);
 
             OTPVerificationSuccessBroadcastReceiver successVerification = new DefaultOTPVerificationSuccessBroadcastReceiver(this);
-            registerReceiver(successVerification, successFilter);
+            LocalBroadcastManager.getInstance(this).registerReceiver(successVerification, successFilter);
 
             Log.d(OTPBroadcastReceiver.TAG, "Registered OTPVerificationSuccessBroadcastReceiver");
 

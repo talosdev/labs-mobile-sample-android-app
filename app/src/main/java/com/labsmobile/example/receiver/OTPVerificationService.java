@@ -4,7 +4,7 @@ import android.app.IntentService;
 import android.content.Intent;
 
 import com.labsmobile.android.service.OTPService;
-import com.labsmobile.android.service.ServiceFactory;
+import com.labsmobile.example.LabsMobileServiceProvider;
 
 /**
  * Created by apapad on 27/03/16.
@@ -34,11 +34,17 @@ public abstract class OTPVerificationService extends IntentService {
     }
 
 
-    protected void extractIntentParmas(Intent intent) {
+    protected void extractIntentParams(Intent intent) {
         code = intent.getStringExtra(EXTRA_CODE);
         phoneNumber = intent.getStringExtra(EXTRA_PHONE_NUMBER);
-        otpService = ServiceFactory.newInstance(intent.getStringExtra(EXTRA_USERNAME),
+        //TODO uncomment the other one.
+        LabsMobileServiceProvider.init(intent.getStringExtra(EXTRA_USERNAME),
                 intent.getStringExtra(EXTRA_PASSWORD),
-                intent.getStringExtra(EXTRA_ENV)).createOTPService();
+                intent.getStringExtra(EXTRA_ENV));
+        otpService = LabsMobileServiceProvider.provideOTPService();
+
+//        otpService = ServiceFactory.newInstance(intent.getStringExtra(EXTRA_USERNAME),
+//                intent.getStringExtra(EXTRA_PASSWORD),
+//                intent.getStringExtra(EXTRA_ENV)).createOTPService();
     }
 }
