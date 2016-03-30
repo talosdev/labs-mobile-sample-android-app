@@ -50,7 +50,7 @@
 
 
         <service
-            android:name=".otp.background.impl.DefaultOTPVerificationService"/>
+            android:name="com.labsmobile.android.service.background.impl.DefaultOTPVerificationService"/>
     </application>
 
 </manifest>
