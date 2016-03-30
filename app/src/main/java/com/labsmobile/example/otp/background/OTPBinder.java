@@ -1,4 +1,4 @@
-package com.labsmobile.example.receiver;
+package com.labsmobile.example.otp.background;
 
 import android.os.IBinder;
 

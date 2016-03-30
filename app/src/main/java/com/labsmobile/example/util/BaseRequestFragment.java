@@ -1,4 +1,4 @@
-package com.labsmobile.example;
+package com.labsmobile.example.util;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,22 +8,30 @@ import android.widget.ProgressBar;
 
 import com.labsmobile.android.model.OTPRequest;
 import com.labsmobile.android.service.OTPService;
+import com.labsmobile.example.LabsMobileServiceProvider;
+import com.labsmobile.example.R;
+import com.labsmobile.example.otp.Navigator;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
+ * Base Fragment that can be used when a fragment includes a button
+ * to request a code to be sent by SMS. The fragment hanldes the UI changes
+ * (showing and hiding the progrss bar) and handling the result (error messages
+ * in case of failure, or navigation in case of success).
+ *
  * Created by apapad on 25/03/16.
  */
 public class BaseRequestFragment extends Fragment {
 
-    OTPService otpService;
+    protected OTPService otpService;
 
     @Bind(R.id.progressBar)
-    ProgressBar progressBar;
+    protected ProgressBar progressBar;
 
     @Bind(R.id.button_request_code)
-    Button button;
+    protected Button button;
 
     protected Navigator navigator;
 
@@ -51,7 +59,7 @@ public class BaseRequestFragment extends Fragment {
                 getResources().getString(R.string.otp_message),
                 getResources().getString(R.string.otp_message_sender));
 
-        otpService.sendCode(request, new DefaultServiceCallback<Boolean>(getActivity()) {
+        otpService.sendCode(request, new DefaultServiceCallback<Boolean>(getActivity(), progressBar ) {
             @Override
             public void onResponseOK(Boolean aBoolean) {
                 navigator.onCodeRequested(phoneNumber);

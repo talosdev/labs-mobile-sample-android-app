@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -18,6 +17,8 @@ import android.widget.Toast;
 import com.labsmobile.android.model.BalanceQueryResponse;
 import com.labsmobile.android.model.PriceQueryResponse;
 import com.labsmobile.android.service.QueryService;
+import com.labsmobile.example.util.BaseActivity;
+import com.labsmobile.example.util.DefaultServiceCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +28,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class QueriesActivity extends BaseActivity {
-
-    @Bind(R.id.query_balance_button)
-    Button queryBalanceButton;
 
 
     @Bind(R.id.progressBar)
@@ -65,7 +63,7 @@ public class QueriesActivity extends BaseActivity {
 
     @OnClick(R.id.query_balance_button)
     public void onBalanceButtonClick() {
-        queryService.queryBalance(new DefaultServiceCallback<BalanceQueryResponse>(QueriesActivity.this) {
+        queryService.queryBalance(new DefaultServiceCallback<BalanceQueryResponse>(QueriesActivity.this, null) {
             @Override
             public void onResponseOK(BalanceQueryResponse balanceQueryResponse) {
                 Toast.makeText(QueriesActivity.this,
@@ -80,7 +78,7 @@ public class QueriesActivity extends BaseActivity {
         progressBar.setVisibility(View.VISIBLE);
         adapter.clear();
 
-        queryService.queryPrices(countriesBox.getText().toString(), new DefaultServiceCallback<PriceQueryResponse>(QueriesActivity.this) {
+        queryService.queryPrices(countriesBox.getText().toString(), new DefaultServiceCallback<PriceQueryResponse>(QueriesActivity.this, progressBar) {
             @Override
             public void onResponseOK(PriceQueryResponse priceQueryResponse) {
                 progressBar.setVisibility(View.GONE);
@@ -89,12 +87,9 @@ public class QueriesActivity extends BaseActivity {
                         priceQueryResponse.getCountryPrices();
 
                 if (countryPrices != null) {
-
-                    adapter.addAll(countryPrices);
-//                    Toast.makeText(QueriesActivity.this,
-//                            countryPrices.get(0).getName() + " - " + countryPrices.get(0).getPrice(),
-//                            Toast.LENGTH_LONG).show();
-
+                    for (PriceQueryResponse.CountryPriceInfo info: countryPrices) {
+                        adapter.add(info);
+                    }
                 }
             }
         });

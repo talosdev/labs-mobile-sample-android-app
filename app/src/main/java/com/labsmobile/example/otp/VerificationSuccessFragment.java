@@ -1,10 +1,13 @@
-package com.labsmobile.example;
+package com.labsmobile.example.otp;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.labsmobile.example.util.BaseRequestFragment;
+import com.labsmobile.example.R;
 
 import butterknife.ButterKnife;
 

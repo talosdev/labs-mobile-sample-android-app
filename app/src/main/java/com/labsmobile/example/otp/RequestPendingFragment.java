@@ -1,4 +1,4 @@
-package com.labsmobile.example;
+package com.labsmobile.example.otp;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,12 +13,21 @@ import android.widget.Toast;
 import com.labsmobile.android.error.GenericError;
 import com.labsmobile.android.model.OTPValidationRequest;
 import com.labsmobile.android.service.ServiceCallback;
+import com.labsmobile.example.util.BaseRequestFragment;
+import com.labsmobile.example.util.Constants;
+import com.labsmobile.example.LabsMobileServiceProvider;
+import com.labsmobile.example.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
+ * Fragment shown when a code has just been requested, or when, after a verification check, it is
+ * found out that there is a pending verification process in progress. A TextView changes its text
+ * accordingly to show an appropriate message to the user.
+ *
+ *
  * Created by apapad on 25/03/16.
  */
 public class RequestPendingFragment extends BaseRequestFragment {
@@ -105,7 +114,6 @@ public class RequestPendingFragment extends BaseRequestFragment {
                             Toast.LENGTH_LONG).show();
                     codeEditText.setText("");
                 }
-
             }
 
             @Override

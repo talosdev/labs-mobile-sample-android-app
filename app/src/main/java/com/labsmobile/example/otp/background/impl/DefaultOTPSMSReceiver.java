@@ -1,4 +1,4 @@
-package com.labsmobile.example.receiver;
+package com.labsmobile.example.otp.background.impl;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,21 +6,23 @@ import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
-import com.labsmobile.example.Constants;
+import com.labsmobile.example.otp.background.OTPSMSReceiver;
+import com.labsmobile.example.otp.background.OTPVerificationService;
+import com.labsmobile.example.util.Constants;
 
 /**
- * Default implementation of {@link OTPBroadcastReceiver} that extracts the code and starts a
- * Service to handle the verification process automatically.
- * Subclasses can customize the behaviour by sublassing the methods
- * {@lnk DefaultOTPBroadcastReceiver#shouldProcessMessage} and
- * {@link DefaultOTPBroadcastReceiver#getVerificationCode(String, String)}
+ * Default implementation of {@link OTPSMSReceiver} that extracts the code and starts a
+ * {@link OTPVerificationService} to handle the verification process automatically.
+ * Subclasses can customize the behaviour by overriding the methods
+ * {@lnk DefaultOTPSMSReceiver#shouldProcessMessage} and
+ * {@link DefaultOTPSMSReceiver#getVerificationCode(String, String)}
  * <br>
  * Adapted from
  * http://www.androidhive.info/2015/08/android-adding-sms-verification-like-whatsapp-part-2/
  *
  * Created by apapad on 25/03/16.
  */
-public class DefaultOTPBroadcastReceiver extends OTPBroadcastReceiver {
+public class DefaultOTPSMSReceiver extends OTPSMSReceiver {
 
     private final String username;
     private final String password;
@@ -32,9 +34,9 @@ public class DefaultOTPBroadcastReceiver extends OTPBroadcastReceiver {
     private String env;
     private String phoneNumber;
 
-    public DefaultOTPBroadcastReceiver(String sender, String messageTemplate, String phoneNumber,
-                                       Class<? extends OTPVerificationService> verificationServiceClass,
-                                       String username, String password, String env) {
+    public DefaultOTPSMSReceiver(String sender, String messageTemplate, String phoneNumber,
+                                 Class<? extends OTPVerificationService> verificationServiceClass,
+                                 String username, String password, String env) {
         this.sender = sender;
         this.messageTemplate = messageTemplate;
         this.phoneNumber = phoneNumber;
@@ -44,9 +46,18 @@ public class DefaultOTPBroadcastReceiver extends OTPBroadcastReceiver {
         this.env = env;
     }
 
-    public DefaultOTPBroadcastReceiver(String sender, String messageTemplate, String phoneNumber,
-                                       Class<? extends OTPVerificationService> verificationServiceClass,
-                                       String username, String password) {
+    /**
+     * Overloaded constructor with default <code>env</code> value (empty string).
+     * @param sender
+     * @param messageTemplate
+     * @param phoneNumber
+     * @param verificationServiceClass
+     * @param username
+     * @param password
+     */
+    public DefaultOTPSMSReceiver(String sender, String messageTemplate, String phoneNumber,
+                                 Class<? extends OTPVerificationService> verificationServiceClass,
+                                 String username, String password) {
         this.sender = sender;
         this.messageTemplate = messageTemplate;
         this.phoneNumber = phoneNumber;
@@ -78,18 +89,16 @@ public class DefaultOTPBroadcastReceiver extends OTPBroadcastReceiver {
 
                         Log.d(TAG, "OTP received: " + verificationCode);
 
-                        // TODO, we need a bound service, and pass the otpService through it.
                         Intent otpIntent = new Intent(context, serviceClass);
-                        otpIntent.putExtra(OTPVerificationService.EXTRA_CODE, verificationCode);
-                        otpIntent.putExtra(OTPVerificationService.EXTRA_USERNAME, username);
-                        otpIntent.putExtra(OTPVerificationService.EXTRA_PASSWORD, password);
-                        otpIntent.putExtra(OTPVerificationService.EXTRA_ENV, env);
-                        otpIntent.putExtra(OTPVerificationService.EXTRA_PHONE_NUMBER, phoneNumber);
+                        OTPVerificationService.putExtras(otpIntent,
+                                username,
+                                password,
+                                env,
+                                phoneNumber,
+                                verificationCode);
+
                         context.startService(otpIntent);
-
-
                     }
-
                 }
             }
         } catch (Exception e) {

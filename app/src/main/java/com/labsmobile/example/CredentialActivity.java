@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.labsmobile.example.util.ButtonTogglingTextWatcher;
+import com.labsmobile.example.util.Constants;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
