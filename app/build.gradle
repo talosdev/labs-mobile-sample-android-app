@@ -24,6 +24,13 @@ android {
             it.buildConfigField 'String', 'LABS_MOBILE_REAL_RECIPIENT', "\"$System.env.LABS_MOBILE_REAL_RECIPIENT\""
         }
     }
+    productFlavors {
+        mock {
+        }
+        real {
+
+        }
+    }
 }
 
 dependencies {

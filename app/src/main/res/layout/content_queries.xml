@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/list_prices"
         android:layout_gravity="center_horizontal"
-        android:divider="#e32727"
+        android:divider="@color/colorPrimary"
         android:dividerHeight="2dp" />
 
 </LinearLayout>
