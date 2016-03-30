@@ -21,8 +21,6 @@ public class Constants {
     public static final String EXTRA_REQUESTED = "com.labsmobile.extra.REQUESTED";
 
 
-    public static final String OTP_TOKEN = "%CODE%";
-    public static final int OTP_LENGTH = 6;
 
 
     public static final String SHARED_PREFS = "com.labsmobile.SHARED_PREFS";

@@ -14,12 +14,12 @@ import android.widget.Toast;
 
 import com.labsmobile.android.service.OTPService;
 import com.labsmobile.example.R;
-import com.labsmobile.example.otp.background.impl.DefaultOTPSMSReceiver;
-import com.labsmobile.example.otp.background.impl.DefaultOTPVerificationService;
-import com.labsmobile.example.otp.background.impl.DefaultOTPVerificationSuccessReceiver;
-import com.labsmobile.example.otp.background.OTPVerificationService;
-import com.labsmobile.example.otp.background.OTPVerificationSuccessReceiver;
-import com.labsmobile.example.otp.background.AutomaticVerificationSuccessCallback;
+import com.labsmobile.android.service.background.impl.DefaultOTPSMSReceiver;
+import com.labsmobile.android.service.background.impl.DefaultOTPVerificationService;
+import com.labsmobile.android.service.background.impl.DefaultOTPVerificationSuccessReceiver;
+import com.labsmobile.android.service.background.OTPVerificationService;
+import com.labsmobile.android.service.background.OTPVerificationSuccessReceiver;
+import com.labsmobile.android.service.background.AutomaticVerificationSuccessCallback;
 import com.labsmobile.example.util.BaseActivity;
 import com.labsmobile.example.util.Constants;
 
