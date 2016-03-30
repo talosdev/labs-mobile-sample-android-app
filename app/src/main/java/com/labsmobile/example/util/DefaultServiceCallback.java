@@ -18,8 +18,8 @@ import com.labsmobile.example.R;
  */
 public abstract class DefaultServiceCallback<T> implements ServiceCallback<T> {
 
-    protected Context context;
-    private ProgressBar progressBar;
+    protected final Context context;
+    private final ProgressBar progressBar;
 
     public DefaultServiceCallback(Context context, ProgressBar progressBar) {
         this.context = context;

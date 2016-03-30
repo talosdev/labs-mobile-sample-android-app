@@ -77,7 +77,7 @@ public class CredentialActivity extends AppCompatActivity {
         editor.putString(Constants.SHARED_PREFS_USERNAME, username);
         editor.putString(Constants.SHARED_PREFS_PASSWORD, password);
         editor.putString(Constants.SHARED_PREFS_ENV, env);
-        editor.commit();
+        editor.apply();
     }
 
 }

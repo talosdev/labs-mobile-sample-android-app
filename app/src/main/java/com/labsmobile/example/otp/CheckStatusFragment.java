@@ -24,13 +24,16 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
+ * Fragment that offers the UI for the user to check the verification status for a mobile phone
+ * number and handles the response.
+ *
  * Created by apapad on 28/03/16.
  */
 public class CheckStatusFragment extends Fragment {
 
-    public static final String TAG = "OTP_STATUS";
+    private static final String TAG = "OTP_STATUS";
 
-    private OTPService otpService;
+    private final OTPService otpService;
 
     @Bind(R.id.phone_number)
     EditText phoneNumberEditText;
@@ -91,7 +94,7 @@ public class CheckStatusFragment extends Fragment {
                     navigator.onNumberNotVerifiedResult(phoneNumber, false);
 
                 } else {
-                    if (aBoolean.booleanValue()) {
+                    if (aBoolean) {
                         Log.d(TAG, "Number verified");
                         navigator.onNumberVerified();
                     } else {

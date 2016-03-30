@@ -45,16 +45,16 @@ public class RequestPendingFragment extends BaseRequestFragment {
     @Bind(R.id.otp)
     TextView codeEditText;
 
-    Navigator navigator;
+    private Navigator navigator;
 
     public RequestPendingFragment() {
     }
 
     /**
-     * @param phoneNumber
+     * @param phoneNumber The phone number
      * @param codeJustRequested Whether a code has just been requested, or whether we are coming here after a check
      *                          that showed that a pending request already exists.
-     * @return
+     * @return A new fragment instance.
      */
     public static RequestPendingFragment newInstance(String phoneNumber, boolean codeJustRequested) {
         RequestPendingFragment f = new RequestPendingFragment();
@@ -105,7 +105,7 @@ public class RequestPendingFragment extends BaseRequestFragment {
             @Override
             public void onResponseOK(Boolean aBoolean) {
                 progressBarManual.setVisibility(View.INVISIBLE);
-                if (aBoolean.booleanValue()) {
+                if (aBoolean) {
                     //getArguments().getString(Constants.EXTRA_PHONE_NUMBER)
                     navigator.onNumberVerified();
                 } else {

@@ -2,7 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.labsmobile.example">
 
+    <!-- We need internet access to use any methods from the API -->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- In order to be able to read the messages and automatically extract the verification code,
+    we need these permissions -->
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
 
@@ -18,13 +22,14 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".SMSActivity"
             android:label="@string/title_activity_sms"
@@ -34,6 +39,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.labsmobile.example.MainActivity" />
         </activity>
+
         <activity
             android:name=".QueriesActivity"
             android:label="@string/title_activity_queries"
@@ -48,9 +54,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
 
+        <!-- The service that is responsible for performing the verification in the background,
+        based on the SMS received, and then notify the application. -->
+        <service android:name="com.labsmobile.android.service.background.impl.DefaultOTPVerificationService" />
 
-        <service
-            android:name="com.labsmobile.android.service.background.impl.DefaultOTPVerificationService"/>
     </application>
 
 </manifest>

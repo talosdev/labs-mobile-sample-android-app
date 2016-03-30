@@ -12,6 +12,8 @@ import com.labsmobile.example.R;
 import butterknife.ButterKnife;
 
 /**
+ * Fragment that informs the user that their number is verified.
+ *
  * Created by apapad on 25/03/16.
  */
 public class VerificationSuccessFragment extends BaseRequestFragment {

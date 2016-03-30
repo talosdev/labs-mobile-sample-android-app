@@ -6,17 +6,26 @@ import com.labsmobile.android.service.SMSService;
 import com.labsmobile.android.service.ServiceFactory;
 
 /**
+ * Factory/Provider that is used to obtain the LabsMobile services. It is actually a facade to the
+ * {@link ServiceFactory}. Before any of the <code>provideXXXService</code> methods are called,
+ * a method to {@link LabsMobileServiceProvider#init} must be made.
+ *
  * Created by apapad on 24/03/16.
  */
 public class LabsMobileServiceProvider {
 
-    private static LabsMobileServiceProvider provider;
     private static ServiceFactory serviceFactory;
     private static boolean initialized;
 
     private LabsMobileServiceProvider() {
     }
 
+    /**
+     * Initialization method.
+     * @param username The LabsMobile account username
+     * @param password The LabsMobile account password
+     * @param env The env to use (might be null)
+     */
     public static void init(String username, String password, String env) {
         ServiceFactory.DEBUG = true;
         serviceFactory = ServiceFactory.newInstance(username, password, env);
@@ -40,8 +49,8 @@ public class LabsMobileServiceProvider {
     private static void checkInitialized() throws IllegalStateException {
         if (!initialized)  {
             throw new IllegalStateException("The Provider has not been initialized properly. " +
-                    "Please make sure you have called the init() methos with valid " +
-                    "LabsMobile credentials before calling any of the proviceXXX() methods");
+                    "Please make sure you have called the init() methods with valid " +
+                    "LabsMobile credentials before calling any of the provideXXX() methods");
         }
     }
 }

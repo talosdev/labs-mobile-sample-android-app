@@ -1,6 +1,8 @@
 package com.labsmobile.example.util;
 
 /**
+ * Groups various constants used across the application.
+ *
  * Created by apapad on 23/03/16.
  */
 public class Constants {

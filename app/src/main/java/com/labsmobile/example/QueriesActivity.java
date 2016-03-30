@@ -102,7 +102,7 @@ public class QueriesActivity extends BaseActivity {
     }
 
     private class PriceArrayAdapter extends ArrayAdapter<PriceQueryResponse.CountryPriceInfo>{
-        private Context context;
+        private final Context context;
 
         public PriceArrayAdapter(Context context) {
             super(context, -1, new ArrayList<PriceQueryResponse.CountryPriceInfo>());

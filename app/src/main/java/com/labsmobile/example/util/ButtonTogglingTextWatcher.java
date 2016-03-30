@@ -13,8 +13,8 @@ import android.widget.EditText;
  */
 public class ButtonTogglingTextWatcher implements TextWatcher {
 
-    EditText[] editTexts;
-    Button button;
+    private final EditText[] editTexts;
+    private final Button button;
 
     public ButtonTogglingTextWatcher(Button button, EditText... editTexts) {
         this.editTexts = editTexts;

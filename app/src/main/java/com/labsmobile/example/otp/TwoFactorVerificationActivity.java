@@ -25,6 +25,8 @@ import com.labsmobile.example.util.Constants;
 
 
 /**
+ * Activity that handles the OTP/two-factor-verification process.
+ *
  * Created by apapad on 25/03/16.
  */
 public class TwoFactorVerificationActivity extends BaseActivity implements Navigator, AutomaticVerificationSuccessCallback {
@@ -32,7 +34,7 @@ public class TwoFactorVerificationActivity extends BaseActivity implements Navig
     protected OTPService otpService;
 
     private BroadcastReceiver receiver;
-    private String TAG = "OTP";
+    private static final String TAG = "OTP";
 
 
     @Override
@@ -150,13 +152,4 @@ public class TwoFactorVerificationActivity extends BaseActivity implements Navig
         onNumberVerified();
     }
 
-
-    class VerificationCompleteReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            //TODO
-            Toast.makeText(TwoFactorVerificationActivity.this, "YEAAAH!", Toast.LENGTH_LONG).show();
-        }
-    }
 }
