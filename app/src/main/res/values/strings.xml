@@ -39,6 +39,7 @@
     <string name="tfv_prompt_new_2">In case you receive the SMS and we fail to automatically extract the code, please enter the code in the box below.</string>
     <string name="otp">Code</string>
     <string name="ok">OK</string>
+    <string name="continueButton">Continue</string>
     <string name="verificationNOK">We were not able to verify your mobile number, please try again.</string>
     <string name="verificationOK">Your number has been verified!</string>
     <string name="title_activity_two_factor_verification">Two factor verification</string>

@@ -1,8 +1,6 @@
 package com.labsmobile.example;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -54,8 +52,6 @@ public class CredentialActivity extends AppCompatActivity {
                         password,
                         env);
 
-                storeToSharedPreferences(username, password, env);
-
                 startActivity(MainActivity.newIntent(CredentialActivity.this));
             }
         });
@@ -69,15 +65,6 @@ public class CredentialActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void storeToSharedPreferences(String username, String password, String env) {
-        SharedPreferences sharedpreferences = getSharedPreferences(Constants.SHARED_PREFS, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString(Constants.SHARED_PREFS_USERNAME, username);
-        editor.putString(Constants.SHARED_PREFS_PASSWORD, password);
-        editor.putString(Constants.SHARED_PREFS_ENV, env);
-        editor.apply();
     }
 
 }
