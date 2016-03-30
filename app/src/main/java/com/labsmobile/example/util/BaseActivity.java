@@ -1,4 +1,4 @@
-package com.labsmobile.example;
+package com.labsmobile.example.util;
 
 import android.support.v7.app.AppCompatActivity;
 

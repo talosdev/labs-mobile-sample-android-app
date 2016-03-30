@@ -1,4 +1,4 @@
-package com.labsmobile.example;
+package com.labsmobile.example.util;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,7 +11,7 @@ import android.widget.EditText;
  *
  * Created by apapad on 24/03/16.
  */
-class ButtonTogglingTextWatcher implements TextWatcher {
+public class ButtonTogglingTextWatcher implements TextWatcher {
 
     EditText[] editTexts;
     Button button;

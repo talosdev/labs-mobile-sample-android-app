@@ -5,11 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.labsmobile.example.otp.TwoFactorVerificationActivity;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * Main Activity that shows a list of navigation buttons.
+ */
 public class MainActivity extends AppCompatActivity {
-
 
 
     @Override

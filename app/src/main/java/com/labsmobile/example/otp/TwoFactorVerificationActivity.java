@@ -1,4 +1,4 @@
-package com.labsmobile.example;
+package com.labsmobile.example.otp;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -13,18 +13,21 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.labsmobile.android.service.OTPService;
-import com.labsmobile.example.receiver.DefaultOTPBroadcastReceiver;
-import com.labsmobile.example.receiver.DefaultOTPVerificationService;
-import com.labsmobile.example.receiver.DefaultOTPVerificationSuccessBroadcastReceiver;
-import com.labsmobile.example.receiver.OTPBroadcastReceiver;
-import com.labsmobile.example.receiver.OTPVerificationService;
-import com.labsmobile.example.receiver.OTPVerificationSuccessBroadcastReceiver;
-import com.labsmobile.example.receiver.VerificationSuccessCallback;
+import com.labsmobile.example.R;
+import com.labsmobile.example.otp.background.impl.DefaultOTPSMSReceiver;
+import com.labsmobile.example.otp.background.impl.DefaultOTPVerificationService;
+import com.labsmobile.example.otp.background.impl.DefaultOTPVerificationSuccessReceiver;
+import com.labsmobile.example.otp.background.OTPVerificationService;
+import com.labsmobile.example.otp.background.OTPVerificationSuccessReceiver;
+import com.labsmobile.example.otp.background.AutomaticVerificationSuccessCallback;
+import com.labsmobile.example.util.BaseActivity;
+import com.labsmobile.example.util.Constants;
+
 
 /**
  * Created by apapad on 25/03/16.
  */
-public class TwoFactorVerificationActivity extends BaseActivity implements Navigator, VerificationSuccessCallback {
+public class TwoFactorVerificationActivity extends BaseActivity implements Navigator, AutomaticVerificationSuccessCallback {
 
     protected OTPService otpService;
 
@@ -49,7 +52,7 @@ public class TwoFactorVerificationActivity extends BaseActivity implements Navig
 
 
         LocalBroadcastManager.getInstance(this).registerReceiver(
-                new VerificationCompleteReceiver(), new IntentFilter(OTPVerificationService.VERIFICATION_SUCCESS));
+                new VerificationCompleteReceiver(), new IntentFilter(OTPVerificationService.SUCCESS_INTENT));
 
     }
 
@@ -61,7 +64,7 @@ public class TwoFactorVerificationActivity extends BaseActivity implements Navig
 
 
     @Override
-    public void onCheckResult(String phoneNumber, boolean pendingRequestExists) {
+    public void onNumberNotVerifiedResult(String phoneNumber, boolean pendingRequestExists) {
         if (!pendingRequestExists) {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             NotVerifiedFragment f = NotVerifiedFragment.newInstance(phoneNumber);
@@ -103,7 +106,7 @@ public class TwoFactorVerificationActivity extends BaseActivity implements Navig
         } else {
 
             // TODO move this
-            receiver = new DefaultOTPBroadcastReceiver(
+            receiver = new DefaultOTPSMSReceiver(
                     getResources().getString(R.string.otp_message_sender),
                     getResources().getString(R.string.otp_message),
                     phoneNumber,
@@ -114,15 +117,15 @@ public class TwoFactorVerificationActivity extends BaseActivity implements Navig
             );
 
             registerReceiver(receiver, filter);
-            Log.d(OTPBroadcastReceiver.TAG, "Registered OTPBroadcastReceiver");
+            Log.d(TAG, "Registered OTPSMSReceiver");
 
             IntentFilter successFilter = new IntentFilter();
-            successFilter.addAction(OTPVerificationService.VERIFICATION_SUCCESS);
+            successFilter.addAction(OTPVerificationService.SUCCESS_INTENT);
 
-            OTPVerificationSuccessBroadcastReceiver successVerification = new DefaultOTPVerificationSuccessBroadcastReceiver(this);
+            OTPVerificationSuccessReceiver successVerification = new DefaultOTPVerificationSuccessReceiver(this);
             LocalBroadcastManager.getInstance(this).registerReceiver(successVerification, successFilter);
 
-            Log.d(OTPBroadcastReceiver.TAG, "Registered OTPVerificationSuccessBroadcastReceiver");
+            Log.d(TAG, "Registered OTPVerificationSuccessReceiver");
 
 
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

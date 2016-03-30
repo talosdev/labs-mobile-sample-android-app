@@ -1,4 +1,4 @@
-package com.labsmobile.example;
+package com.labsmobile.example.otp;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,9 +12,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import com.labsmobile.android.error.GenericError;
 import com.labsmobile.android.model.OTPCheckRequest;
 import com.labsmobile.android.service.OTPService;
+import com.labsmobile.example.LabsMobileServiceProvider;
+import com.labsmobile.example.R;
+import com.labsmobile.example.util.ButtonTogglingTextWatcher;
+import com.labsmobile.example.util.DefaultServiceCallback;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -38,7 +41,6 @@ public class CheckStatusFragment extends Fragment {
     @Bind(R.id.button)
     Button button;
 
-
     private Navigator navigator;
 
     public CheckStatusFragment() {
@@ -47,8 +49,6 @@ public class CheckStatusFragment extends Fragment {
 
     public static CheckStatusFragment newInstance() {
         CheckStatusFragment f = new CheckStatusFragment();
-        Bundle b = new Bundle();
-        f.setArguments(b);
         return f;
     }
 
@@ -64,14 +64,12 @@ public class CheckStatusFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_check, container, false);
-        otpService = LabsMobileServiceProvider.provideOTPService();
 
         ButterKnife.bind(this, rootView);
 
         ButtonTogglingTextWatcher buttonToggler = new ButtonTogglingTextWatcher(button, phoneNumberEditText);
         phoneNumberEditText.addTextChangedListener(buttonToggler);
 
-        button.setText(R.string.check);
         return rootView;
     }
 
@@ -83,14 +81,14 @@ public class CheckStatusFragment extends Fragment {
 
         OTPCheckRequest request = new OTPCheckRequest(phoneNumber);
 
-        otpService.checkCode(request, new DefaultServiceCallback<Boolean>(getActivity()) {
+        otpService.checkCode(request, new DefaultServiceCallback<Boolean>(getActivity(), progressBar) {
             @Override
             public void onResponseOK(Boolean aBoolean) {
                 progressBar.setVisibility(View.GONE);
 
                 if (aBoolean == null) {
                     Log.d(TAG, "Number not verified, and no pending process");
-                    navigator.onCheckResult(phoneNumber, false);
+                    navigator.onNumberNotVerifiedResult(phoneNumber, false);
 
                 } else {
                     if (aBoolean.booleanValue()) {
@@ -98,22 +96,11 @@ public class CheckStatusFragment extends Fragment {
                         navigator.onNumberVerified();
                     } else {
                         Log.d(TAG, "Number not verified, but process in progress");
-                        navigator.onCheckResult(phoneNumber, true);
+                        navigator.onNumberNotVerifiedResult(phoneNumber, true);
                     }
                 }
             }
 
-            @Override
-            public void onResponseNOK(GenericError genericError) {
-                super.onResponseNOK(genericError);
-                progressBar.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onError(Throwable throwable) {
-                super.onError(throwable);
-                progressBar.setVisibility(View.GONE);
-            }
         });
 
     }

@@ -15,6 +15,9 @@ import com.labsmobile.android.model.SMSBuilder;
 import com.labsmobile.android.model.SMSData;
 import com.labsmobile.android.model.SMSResponse;
 import com.labsmobile.android.service.SMSService;
+import com.labsmobile.example.util.BaseActivity;
+import com.labsmobile.example.util.ButtonTogglingTextWatcher;
+import com.labsmobile.example.util.DefaultServiceCallback;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -80,7 +83,7 @@ public class SMSActivity extends BaseActivity {
                 setLongMessage(longModeCheckBox.isChecked()).
                 setTpoa("LabsMobile").createSMSData();
 
-        smsService.sendSMS(smsData, new DefaultServiceCallback<SMSResponse>(SMSActivity.this) {
+        smsService.sendSMS(smsData, new DefaultServiceCallback<SMSResponse>(SMSActivity.this, progressBar) {
             @Override
             public void onResponseOK(SMSResponse smsResponse) {
                 progressBar.setVisibility(View.GONE);
