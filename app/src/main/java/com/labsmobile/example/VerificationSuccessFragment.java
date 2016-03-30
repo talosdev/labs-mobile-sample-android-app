@@ -14,21 +14,17 @@ import butterknife.ButterKnife;
 public class VerificationSuccessFragment extends BaseRequestFragment {
 
 
-
-
-
     public VerificationSuccessFragment() {
     }
 
 
-    public static VerificationSuccessFragment newInstance(String phoneNumber) {
+    public static VerificationSuccessFragment newInstance() {
         VerificationSuccessFragment f = new VerificationSuccessFragment();
-        Bundle b = f.getBaseArgs(phoneNumber);
-
+        //Bundle b = f.getBaseArgs(phoneNumber);
+        Bundle b = new Bundle();
         f.setArguments(b);
         return f;
     }
-
 
 
     @Nullable

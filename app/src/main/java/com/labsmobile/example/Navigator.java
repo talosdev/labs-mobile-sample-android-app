@@ -8,7 +8,7 @@ public interface Navigator {
 
     void onCheckResult(String phoneNumber, boolean pendingRequestExists);
 
-    void onNumberVerified(String phoneNumber);
+    void onNumberVerified();
 
     void onCodeRequested(String phoneNumber);
 }

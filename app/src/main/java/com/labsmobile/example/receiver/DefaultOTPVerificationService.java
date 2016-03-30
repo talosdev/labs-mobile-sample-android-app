@@ -39,9 +39,6 @@ public class DefaultOTPVerificationService extends OTPVerificationService {
 
                     Intent intent = new Intent(VERIFICATION_SUCCESS);
 
-//                    intent.putExtra("currentSpeed", currentSpeed);
-//                    intent.putExtra("latitude", latitude);
-//                    intent.putExtra("longitude", longitude);
                     LocalBroadcastManager.getInstance(DefaultOTPVerificationService.this).sendBroadcast(intent);
 
                 } else {

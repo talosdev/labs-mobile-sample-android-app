@@ -41,7 +41,8 @@
     <string name="tfv_check_not_verified">A verification process is pending.</string>
     <string name="tfv_check_noCode">The number is not verified and there is no verification process in progress.</string>
     <string name="otp_message">Sample app verification code: \u0025CODE\u0025. Have a nice day!</string>
-    <string name="otp_message_sender">100100</string>
+    <string name="otp_message_sender">111</string>
+    <!--<string name="otp_message_sender">LABSMOBILE</string>-->
     <string name="title_activity_two_step_verification_code">Verification code</string>
     <string name="tfv_prompt_new_1">You will soon receive an SMS with a code and your number will be automatically verified.</string>
     <string name="tfv_prompt_new_2">In case you receive the SMS and we fail to automatically extract the code, please enter the code in the box below.</string>

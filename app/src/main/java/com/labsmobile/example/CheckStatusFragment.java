@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.labsmobile.android.error.GenericError;
 import com.labsmobile.android.model.OTPCheckRequest;
 import com.labsmobile.android.service.OTPService;
 
@@ -94,13 +95,24 @@ public class CheckStatusFragment extends Fragment {
                 } else {
                     if (aBoolean.booleanValue()) {
                         Log.d(TAG, "Number verified");
-                        navigator.onNumberVerified(phoneNumber);
+                        navigator.onNumberVerified();
                     } else {
                         Log.d(TAG, "Number not verified, but process in progress");
                         navigator.onCheckResult(phoneNumber, true);
                     }
-
                 }
+            }
+
+            @Override
+            public void onResponseNOK(GenericError genericError) {
+                super.onResponseNOK(genericError);
+                progressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                super.onError(throwable);
+                progressBar.setVisibility(View.GONE);
             }
         });
 

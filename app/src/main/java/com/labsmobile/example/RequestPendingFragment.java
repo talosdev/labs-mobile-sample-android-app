@@ -97,7 +97,8 @@ public class RequestPendingFragment extends BaseRequestFragment {
             public void onResponseOK(Boolean aBoolean) {
                 progressBarManual.setVisibility(View.INVISIBLE);
                 if (aBoolean.booleanValue()) {
-                    navigator.onNumberVerified(getArguments().getString(Constants.EXTRA_PHONE_NUMBER));
+                    //getArguments().getString(Constants.EXTRA_PHONE_NUMBER)
+                    navigator.onNumberVerified();
                 } else {
                     Toast.makeText(getActivity(),
                             R.string.code_invalid,
