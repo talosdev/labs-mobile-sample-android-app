@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2016, LabsMobile. All rights reserved.
+ */
+
 package com.labsmobile.example.util;
 
 import android.content.Context;
@@ -18,7 +22,7 @@ import butterknife.OnClick;
 /**
  * Base Fragment that can be used when a fragment includes a button
  * to request a code to be sent by SMS. The fragment handles the UI changes
- * (showing and hiding the progess bar) and handling the result (error messages
+ * (showing and hiding the progress bar) and handling the result (error messages
  * in case of failure, or navigation in case of success).
  * <p/>
  * Created by apapad on 25/03/16.

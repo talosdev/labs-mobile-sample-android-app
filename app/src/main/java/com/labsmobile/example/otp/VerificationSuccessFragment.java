@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2016, LabsMobile. All rights reserved.
+ */
+
 package com.labsmobile.example.otp;
 
 import android.os.Bundle;
@@ -13,9 +17,11 @@ import butterknife.ButterKnife;
 
 /**
  * Fragment that informs the user that their number is verified.
- *
- * Created by apapad on 25/03/16.
- */
+
+ * @author talosdev for LabsMobile
+ * @version 1.0
+ * @since 1.0
+*/
 public class VerificationSuccessFragment extends BaseRequestFragment {
 
 

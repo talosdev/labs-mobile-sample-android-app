@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2016, LabsMobile. All rights reserved.
+ */
+
 package com.labsmobile.example;
 
 import com.labsmobile.android.service.OTPService;
@@ -12,9 +16,11 @@ import com.labsmobile.android.service.background.OTPVerificationSuccessReceiver;
  * Factory/Provider that is used to obtain the LabsMobile services. It is actually a facade to the
  * {@link ServiceFactory}. Before any of the <code>provideXXXService</code> methods are called,
  * a method to {@link LabsMobileServiceProvider#init} must be made.
- *
- * Created by apapad on 24/03/16.
- */
+
+ * @author talosdev for LabsMobile
+ * @version 1.0
+ * @since 1.0
+*/
 public class LabsMobileServiceProvider {
 
     private static ServiceFactory serviceFactory;

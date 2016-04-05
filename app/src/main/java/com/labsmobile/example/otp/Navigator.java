@@ -1,9 +1,15 @@
+/*
+ * Copyright (c) 2016, LabsMobile. All rights reserved.
+ */
+
 package com.labsmobile.example.otp;
 
 /**
  * Handles the navigation for the {@link TwoFactorVerificationActivity}
- *
- * Created by apapad on 25/03/16.
+
+ * @author talosdev for LabsMobile
+ * @version 1.0
+ * @since 1.0
  */
 public interface Navigator {
 

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2016, LabsMobile. All rights reserved.
+ */
+
 package com.labsmobile.example;
 
 import android.content.Intent;

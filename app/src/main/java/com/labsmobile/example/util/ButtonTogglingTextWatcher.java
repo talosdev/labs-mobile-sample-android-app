@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2016, LabsMobile. All rights reserved.
+ */
+
 package com.labsmobile.example.util;
 
 import android.text.Editable;
@@ -8,9 +12,11 @@ import android.widget.EditText;
 /**
  * TextWatcher that enables a button if all of the provided EditTexts are filled in, and disables it
  * if at least one of them is empty.
- *
- * Created by apapad on 24/03/16.
- */
+
+ * @author talosdev for LabsMobile
+ * @version 1.0
+ * @since 1.0
+*/
 public class ButtonTogglingTextWatcher implements TextWatcher {
 
     private final EditText[] editTexts;
