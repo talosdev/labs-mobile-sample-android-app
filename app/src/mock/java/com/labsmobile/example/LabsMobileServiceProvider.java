@@ -10,6 +10,9 @@ import com.labsmobile.android.service.QueryService;
 import com.labsmobile.android.service.SMSService;
 import com.labsmobile.android.service.ServiceCallback;
 import com.labsmobile.android.service.ServiceFactory;
+import com.labsmobile.android.service.background.AutomaticVerificationSuccessCallback;
+import com.labsmobile.android.service.background.OTPSMSReceiver;
+import com.labsmobile.android.service.background.OTPVerificationSuccessReceiver;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -54,6 +57,16 @@ public class LabsMobileServiceProvider {
 
     }
 
+    public static OTPVerificationSuccessReceiver provideOTPVerificationSuccessReceiver(AutomaticVerificationSuccessCallback callback) {
+        checkInitialized();
+        return serviceFactory.createOTPVerificationSuccessReceiver(callback);
+    }
+
+
+    public static OTPSMSReceiver provideOTPSMSReceiver(String sender, String messageTemplate, String phoneNumber) {
+        checkInitialized();
+        return serviceFactory.createOTPSMSReceiver(sender, messageTemplate, phoneNumber);
+    }
 
     private static void checkInitialized() throws IllegalStateException {
         if (!initialized)  {
