@@ -67,7 +67,7 @@ public class QueriesActivity extends BaseActivity {
             @Override
             public void onResponseOK(BalanceQueryResponse balanceQueryResponse) {
                 Toast.makeText(QueriesActivity.this,
-                        getResources().getString(R.string.balance_response, balanceQueryResponse.balance),
+                        getResources().getString(R.string.balance_response, balanceQueryResponse.getBalance()),
                         Toast.LENGTH_LONG).show();
             }
         });

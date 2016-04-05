@@ -31,7 +31,7 @@ public class LabsMobileServiceProvider {
      */
     public static void init(String username, String password, String env) {
         ServiceFactory.DEBUG = true;
-        serviceFactory = ServiceFactory.newInstance(username, password, env);
+        serviceFactory = ServiceFactory.getInstance(username, password, env);
         initialized = true;
     }
 

@@ -81,7 +81,7 @@ public class SMSActivity extends BaseActivity {
                 setTest(testModeCheckBox.isChecked()).
                 setUcs2(unicodeModeCheckBox.isChecked()).
                 setLongMessage(longModeCheckBox.isChecked()).
-                setTpoa("LabsMobile").createSMSData();
+                setTpoa("LabsMobile").build();
 
         smsService.sendSMS(smsData, new DefaultServiceCallback<SMSResponse>(SMSActivity.this, progressBar) {
             @Override
