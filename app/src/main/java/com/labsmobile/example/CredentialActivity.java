@@ -18,6 +18,13 @@ import com.labsmobile.example.util.Constants;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * Activity that allows users to enter their LabsMobile credentials, so that they can test
+ * the app.
+ *
+ * @author talosdev for LabsMobile
+ * @version 1.0
+ */
 public class CredentialActivity extends AppCompatActivity {
 
     @Bind(R.id.continue_button)
@@ -56,7 +63,7 @@ public class CredentialActivity extends AppCompatActivity {
                         password,
                         env);
 
-                startActivity(MainActivity.newIntent(CredentialActivity.this));
+                startActivity(IndexActivity.newIntent(CredentialActivity.this));
             }
         });
 

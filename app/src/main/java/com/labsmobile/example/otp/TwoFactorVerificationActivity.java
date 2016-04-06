@@ -11,6 +11,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
@@ -21,15 +22,15 @@ import com.labsmobile.android.service.background.OTPVerificationSuccessReceiver;
 import com.labsmobile.android.service.background.impl.DefaultOTPVerificationSuccessReceiver;
 import com.labsmobile.example.LabsMobileServiceProvider;
 import com.labsmobile.example.R;
-import com.labsmobile.example.util.BaseActivity;
 
 
 /**
  * Activity that handles the OTP/two-factor-verification process.
- * <p/>
- * Created by apapad on 25/03/16.
+ *
+ * @author talosdev for LabsMobile
+ * @version 1.0
  */
-public class TwoFactorVerificationActivity extends BaseActivity implements Navigator, AutomaticVerificationSuccessCallback {
+public class TwoFactorVerificationActivity extends AppCompatActivity implements Navigator, AutomaticVerificationSuccessCallback {
 
     protected OTPService otpService;
 
@@ -115,10 +116,7 @@ public class TwoFactorVerificationActivity extends BaseActivity implements Navig
         RequestPendingFragment f = RequestPendingFragment.newInstance(phoneNumber, true);
         fragmentTransaction.replace(R.id.fragment, f)
                 .commit();
-
     }
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();

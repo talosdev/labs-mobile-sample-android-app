@@ -27,30 +27,30 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".IndexActivity"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".SMSActivity"
             android:label="@string/title_activity_sms"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".IndexActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.labsmobile.example.MainActivity" />
+                android:value=".IndexActivity" />
         </activity>
 
         <activity
             android:name=".QueriesActivity"
             android:label="@string/title_activity_queries"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".IndexActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
 
         <activity
             android:name=".otp.TwoFactorVerificationActivity"
             android:label="@string/title_activity_two_factor_verification"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".IndexActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
 

@@ -31,10 +31,8 @@ import butterknife.OnClick;
  * found out that there is a pending verification process in progress. A TextView changes its text
  * accordingly to show an appropriate message to the user.
  *
-
  * @author talosdev for LabsMobile
  * @version 1.0
- * @since 1.0
  */
 public class RequestPendingFragment extends BaseRequestFragment {
 

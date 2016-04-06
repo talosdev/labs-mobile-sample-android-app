@@ -7,6 +7,7 @@ package com.labsmobile.example;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +22,6 @@ import android.widget.Toast;
 import com.labsmobile.android.model.BalanceQueryResponse;
 import com.labsmobile.android.model.PriceQueryResponse;
 import com.labsmobile.android.service.QueryService;
-import com.labsmobile.example.util.BaseActivity;
 import com.labsmobile.example.util.DefaultServiceCallback;
 
 import java.util.ArrayList;
@@ -31,7 +31,13 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class QueriesActivity extends BaseActivity {
+/**
+ * Activity that offers access to the {@link QueryService}
+ *
+ * @author talosdev for LabsMobile
+ * @version 1.0
+ */
+public class QueriesActivity extends AppCompatActivity {
 
 
     @Bind(R.id.progressBar)

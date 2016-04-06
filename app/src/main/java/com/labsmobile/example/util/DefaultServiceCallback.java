@@ -17,8 +17,9 @@ import com.labsmobile.example.R;
  * Abstract {@link ServiceCallback} implementation that handles the error cases
  * (by showing a Toast and hiding the progressBar) and leaves only the success case to be
  * handler by subclasses.
- * <p/>
- * Created by apapad on 24/03/16.
+ *
+ * @author talosdev for LabsMobile
+ * @version 1.0
  */
 public abstract class DefaultServiceCallback<T> implements ServiceCallback<T> {
 

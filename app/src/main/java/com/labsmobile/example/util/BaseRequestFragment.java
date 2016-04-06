@@ -21,11 +21,12 @@ import butterknife.OnClick;
 
 /**
  * Base Fragment that can be used when a fragment includes a button
- * to request a code to be sent by SMS. The fragment handles the UI changes
+ * to request a verification code to be sent by SMS. The fragment handles the UI changes
  * (showing and hiding the progress bar) and handling the result (error messages
- * in case of failure, or navigation in case of success).
- * <p/>
- * Created by apapad on 25/03/16.
+ * in case of failure, or navigation to another activity in case of success).
+ *
+ * @author talosdev for LabsMobile
+ * @version 1.0
  */
 public class BaseRequestFragment extends Fragment {
 

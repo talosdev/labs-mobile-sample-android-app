@@ -12,10 +12,9 @@ import android.widget.EditText;
 /**
  * TextWatcher that enables a button if all of the provided EditTexts are filled in, and disables it
  * if at least one of them is empty.
-
+ *
  * @author talosdev for LabsMobile
  * @version 1.0
- * @since 1.0
 */
 public class ButtonTogglingTextWatcher implements TextWatcher {
 
@@ -29,7 +28,6 @@ public class ButtonTogglingTextWatcher implements TextWatcher {
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
     }
 
     @Override
@@ -41,12 +39,10 @@ public class ButtonTogglingTextWatcher implements TextWatcher {
                 break;
             }
         }
-
         button.setEnabled(allNonEmpty);
     }
 
     @Override
     public void afterTextChanged(Editable s) {
-
     }
 }

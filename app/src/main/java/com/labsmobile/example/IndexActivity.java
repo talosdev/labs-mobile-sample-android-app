@@ -15,9 +15,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Main Activity that shows a list of navigation buttons.
+ * Index Activity that shows a list of navigation options.
+ *
+ * author talosdev for LabsMobile
+ * @version 1.0
  */
-public class MainActivity extends AppCompatActivity {
+public class IndexActivity extends AppCompatActivity {
 
 
     @Override
@@ -31,21 +34,21 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.sms_services_button)
     public void onSmsButton() {
-        startActivity(SMSActivity.newIntent(MainActivity.this));
+        startActivity(SMSActivity.newIntent(IndexActivity.this));
     }
 
     @OnClick(R.id.query_services_button)
     public void onQueriesButton() {
-        startActivity(QueriesActivity.newIntent(MainActivity.this));
+        startActivity(QueriesActivity.newIntent(IndexActivity.this));
     }
 
     @OnClick(R.id.otp_services_button)
     public void onOTPButton() {
-        startActivity(TwoFactorVerificationActivity.newIntent(MainActivity.this));
+        startActivity(TwoFactorVerificationActivity.newIntent(IndexActivity.this));
     }
 
     public static Intent newIntent(Context context) {
-        Intent i = new Intent(context, MainActivity.class);
+        Intent i = new Intent(context, IndexActivity.class);
         return i;
     }
 }

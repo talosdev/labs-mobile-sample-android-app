@@ -30,10 +30,9 @@ import butterknife.OnClick;
 /**
  * Fragment that offers the UI for the user to check the verification status for a mobile phone
  * number and handles the response.
-
+ *
  * @author talosdev for LabsMobile
  * @version 1.0
- * @since 1.0
  */
 public class CheckStatusFragment extends Fragment {
 

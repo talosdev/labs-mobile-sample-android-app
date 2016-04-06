@@ -6,10 +6,9 @@ package com.labsmobile.example.util;
 
 /**
  * Groups various constants used across the application.
-
+ *
  * @author talosdev for LabsMobile
  * @version 1.0
- * @since 1.0
 */
 public class Constants {
 
