@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2016, LabsMobile. All rights reserved.
+ */
+
 package com.labsmobile.example.otp;
 
 import android.content.Context;
@@ -27,7 +31,8 @@ import butterknife.OnClick;
  * Fragment that offers the UI for the user to check the verification status for a mobile phone
  * number and handles the response.
  *
- * Created by apapad on 28/03/16.
+ * @author talosdev for LabsMobile
+ * @version 1.0
  */
 public class CheckStatusFragment extends Fragment {
 
@@ -35,12 +40,15 @@ public class CheckStatusFragment extends Fragment {
 
     private final OTPService otpService;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.phone_number)
     EditText phoneNumberEditText;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.progressBar)
     ProgressBar progressBar;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.button)
     Button button;
 
@@ -51,8 +59,7 @@ public class CheckStatusFragment extends Fragment {
     }
 
     public static CheckStatusFragment newInstance() {
-        CheckStatusFragment f = new CheckStatusFragment();
-        return f;
+        return new CheckStatusFragment();
     }
 
 

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2016, LabsMobile. All rights reserved.
+ */
+
 package com.labsmobile.example.util;
 
 import android.content.Context;
@@ -6,7 +10,7 @@ import android.support.v4.app.Fragment;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
-import com.labsmobile.android.model.OTPRequest;
+import com.labsmobile.android.model.OTPSendCodeRequest;
 import com.labsmobile.android.service.OTPService;
 import com.labsmobile.example.LabsMobileServiceProvider;
 import com.labsmobile.example.R;
@@ -17,23 +21,25 @@ import butterknife.OnClick;
 
 /**
  * Base Fragment that can be used when a fragment includes a button
- * to request a code to be sent by SMS. The fragment handles the UI changes
- * (showing and hiding the progess bar) and handling the result (error messages
- * in case of failure, or navigation in case of success).
+ * to request a verification code to be sent by SMS. The fragment handles the UI changes
+ * (showing and hiding the progress bar) and handling the result (error messages
+ * in case of failure, or navigation to another activity in case of success).
  *
- * Created by apapad on 25/03/16.
+ * @author talosdev for LabsMobile
+ * @version 1.0
  */
 public class BaseRequestFragment extends Fragment {
 
     protected OTPService otpService;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.progressBar)
     protected ProgressBar progressBar;
 
     @Bind(R.id.button_request_code)
     protected Button button;
 
-    protected Navigator navigator;
+    private Navigator navigator;
 
     public BaseRequestFragment() {
         otpService = LabsMobileServiceProvider.provideOTPService();
@@ -55,11 +61,11 @@ public class BaseRequestFragment extends Fragment {
     @OnClick(R.id.button_request_code)
     public void onRequestCode() {
         final String phoneNumber = getArguments().getString(Constants.EXTRA_PHONE_NUMBER);
-        OTPRequest request = new OTPRequest(phoneNumber,
+        OTPSendCodeRequest request = new OTPSendCodeRequest(phoneNumber,
                 getResources().getString(R.string.otp_message),
                 getResources().getString(R.string.otp_message_sender));
 
-        otpService.sendCode(request, new DefaultServiceCallback<Boolean>(getActivity(), progressBar ) {
+        otpService.sendCode(request, new DefaultServiceCallback<Boolean>(getActivity(), progressBar) {
             @Override
             public void onResponseOK(Boolean aBoolean) {
                 navigator.onCodeRequested(phoneNumber);

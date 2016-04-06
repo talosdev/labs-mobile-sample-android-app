@@ -1,8 +1,13 @@
+/*
+ * Copyright (c) 2016, LabsMobile. All rights reserved.
+ */
+
 package com.labsmobile.example;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +22,6 @@ import android.widget.Toast;
 import com.labsmobile.android.model.BalanceQueryResponse;
 import com.labsmobile.android.model.PriceQueryResponse;
 import com.labsmobile.android.service.QueryService;
-import com.labsmobile.example.util.BaseActivity;
 import com.labsmobile.example.util.DefaultServiceCallback;
 
 import java.util.ArrayList;
@@ -27,15 +31,24 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class QueriesActivity extends BaseActivity {
+/**
+ * Activity that offers access to the {@link QueryService}
+ *
+ * @author talosdev for LabsMobile
+ * @version 1.0
+ */
+public class QueriesActivity extends AppCompatActivity {
 
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.progressBar)
     ProgressBar progressBar;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.countries)
     EditText countriesBox;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.list_prices)
     ListView list;
 
@@ -67,7 +80,7 @@ public class QueriesActivity extends BaseActivity {
             @Override
             public void onResponseOK(BalanceQueryResponse balanceQueryResponse) {
                 Toast.makeText(QueriesActivity.this,
-                        getResources().getString(R.string.balance_response, balanceQueryResponse.balance),
+                        getResources().getString(R.string.balance_response, balanceQueryResponse.getBalance()),
                         Toast.LENGTH_LONG).show();
             }
         });
@@ -97,8 +110,7 @@ public class QueriesActivity extends BaseActivity {
     }
 
     public static Intent newIntent(Context context) {
-        Intent i = new Intent(context, QueriesActivity.class);
-        return i;
+        return new Intent(context, QueriesActivity.class);
     }
 
     private class PriceArrayAdapter extends ArrayAdapter<PriceQueryResponse.CountryPriceInfo>{
@@ -122,7 +134,7 @@ public class QueriesActivity extends BaseActivity {
 
             country.setText(getItem(position).getName());
             prefix.setText(getItem(position).getPrefix());
-            price.setText(getItem(position).getPrice() + "");
+            price.setText(String.valueOf(getItem(position).getPrice()));
 
             return rowView;
 

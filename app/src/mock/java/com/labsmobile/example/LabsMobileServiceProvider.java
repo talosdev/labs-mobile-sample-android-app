@@ -1,21 +1,35 @@
+/*
+ * Copyright (c) 2016, LabsMobile. All rights reserved.
+ */
+
 package com.labsmobile.example;
 
 import android.util.Log;
 
 import com.labsmobile.android.model.OTPCheckRequest;
-import com.labsmobile.android.model.OTPRequest;
+import com.labsmobile.android.model.OTPSendCodeRequest;
 import com.labsmobile.android.model.OTPValidationRequest;
 import com.labsmobile.android.service.OTPService;
 import com.labsmobile.android.service.QueryService;
 import com.labsmobile.android.service.SMSService;
 import com.labsmobile.android.service.ServiceCallback;
 import com.labsmobile.android.service.ServiceFactory;
+import com.labsmobile.android.service.background.AutomaticVerificationSuccessCallback;
+import com.labsmobile.android.service.background.OTPSMSReceiver;
+import com.labsmobile.android.service.background.OTPVerificationSuccessReceiver;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by apapad on 24/03/16.
+ * Alternative mock implementation of the LabsMobileServiceProvider, that provides a mock
+ * {@link OTPService}, that doesn't actually send SMSs. Can be used for testing on an emulator,
+ * by sending an SMS through ADB. In the verification step, if the code starts with "VALID", the
+ * verification is successful.
+ * <br/>
+ * Before any of the <code>provideXXXService</code> methods are called,
+ * a method to {@link LabsMobileServiceProvider#init} must be made.
+ *
  */
 public class LabsMobileServiceProvider {
 
@@ -32,7 +46,7 @@ public class LabsMobileServiceProvider {
 
     public static void init(String username, String password, String env) {
         ServiceFactory.DEBUG = true;
-        serviceFactory = ServiceFactory.newInstance(username, password, env);
+        serviceFactory = ServiceFactory.getInstance(username, password, env);
         initialized = true;
     }
 
@@ -54,28 +68,40 @@ public class LabsMobileServiceProvider {
 
     }
 
+    public static OTPVerificationSuccessReceiver provideOTPVerificationSuccessReceiver(AutomaticVerificationSuccessCallback callback) {
+        checkInitialized();
+        return serviceFactory.createOTPVerificationSuccessReceiver(callback);
+    }
+
+
+    public static OTPSMSReceiver provideOTPSMSReceiver(String sender, String messageTemplate, String phoneNumber) {
+        checkInitialized();
+        return serviceFactory.createOTPSMSReceiver(sender, messageTemplate, phoneNumber);
+    }
 
     private static void checkInitialized() throws IllegalStateException {
         if (!initialized)  {
             throw new IllegalStateException("The Provider has not been initialized properly. " +
-                    "Please make sure you have called the init() methos with valid " +
+                    "Please make sure you have called the init() method with valid " +
                     "LabsMobile credentials before calling any of the proviceXXX() methods");
         }
     }
 
     static class MockOTPService implements OTPService {
 
-        Map<String, Boolean> verifications = new HashMap<>();
+        final Map<String, Boolean> verifications = new HashMap<>();
+
 
         @Override
-        public void sendCode(OTPRequest otpRequest, ServiceCallback<Boolean> serviceCallback) {
-            verifications.put(otpRequest.getPhoneNumber(), false);
+        public void sendCode(OTPSendCodeRequest otpSendCodeRequest, ServiceCallback<Boolean> serviceCallback) {
+            verifications.put(otpSendCodeRequest.getPhoneNumber(), false);
             serviceCallback.onResponseOK(true);
         }
 
         @Override
-        public void resendCode(OTPRequest otpRequest, ServiceCallback<Boolean> serviceCallback) {
+        public void resendCode(OTPSendCodeRequest otpSendCodeRequest, ServiceCallback<Boolean> serviceCallback) {
             serviceCallback.onResponseOK(true);
+
         }
 
         @Override

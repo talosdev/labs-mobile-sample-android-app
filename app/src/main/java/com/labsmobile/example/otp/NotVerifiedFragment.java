@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2016, LabsMobile. All rights reserved.
+ */
+
 package com.labsmobile.example.otp;
 
 import android.os.Bundle;
@@ -14,9 +18,10 @@ import butterknife.ButterKnife;
 /**
  * Fragment shown after a check is made and the result shows that the number is not
  * verified.
- *
- * Created by apapad on 28/03/16.
- */
+
+ * @author talosdev for LabsMobile
+ * @version 1.0
+*/
 public class NotVerifiedFragment extends BaseRequestFragment {
 
 

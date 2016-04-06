@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.labsmobile.example"
-        minSdkVersion 9
+        minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -35,8 +35,6 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile files('libs/labs-mobile-sdk.jar')
-
 
     compile 'com.squareup.okhttp3:logging-interceptor:3.0.1'
     compile 'com.squareup.retrofit2:retrofit:2.0.0'

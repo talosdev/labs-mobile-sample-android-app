@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2016, LabsMobile. All rights reserved.
+ */
+
 package com.labsmobile.example;
 
 import android.content.Intent;
@@ -14,20 +18,32 @@ import com.labsmobile.example.util.Constants;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * Activity that allows users to enter their LabsMobile credentials, so that they can test
+ * the app.
+ *
+ * @author talosdev for LabsMobile
+ * @version 1.0
+ */
 public class CredentialActivity extends AppCompatActivity {
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.continue_button)
     Button continueButton;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.register_button)
     Button registerButton;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.credentials_username)
     EditText usernameEditText;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.credentials_password)
     EditText passwordEditText;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.env)
     EditText envEditText;
 
@@ -52,7 +68,7 @@ public class CredentialActivity extends AppCompatActivity {
                         password,
                         env);
 
-                startActivity(MainActivity.newIntent(CredentialActivity.this));
+                startActivity(IndexActivity.newIntent(CredentialActivity.this));
             }
         });
 

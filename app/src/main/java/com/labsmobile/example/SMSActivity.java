@@ -1,8 +1,13 @@
+/*
+ * Copyright (c) 2016, LabsMobile. All rights reserved.
+ */
+
 package com.labsmobile.example;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +20,6 @@ import com.labsmobile.android.model.SMSBuilder;
 import com.labsmobile.android.model.SMSData;
 import com.labsmobile.android.model.SMSResponse;
 import com.labsmobile.android.service.SMSService;
-import com.labsmobile.example.util.BaseActivity;
 import com.labsmobile.example.util.ButtonTogglingTextWatcher;
 import com.labsmobile.example.util.DefaultServiceCallback;
 
@@ -23,7 +27,13 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SMSActivity extends BaseActivity {
+/**
+ * Activity that demonstrates usage of the {@link SMSService}
+ *
+ * @author talosdev for LabsMobile
+ * @version 1.0
+ */
+public class SMSActivity extends AppCompatActivity {
 
     @Bind(R.id.phone_number)
     EditText phoneNumberEditText;
@@ -81,7 +91,7 @@ public class SMSActivity extends BaseActivity {
                 setTest(testModeCheckBox.isChecked()).
                 setUcs2(unicodeModeCheckBox.isChecked()).
                 setLongMessage(longModeCheckBox.isChecked()).
-                setTpoa("LabsMobile").createSMSData();
+                setTpoa("LabsMobile").build();
 
         smsService.sendSMS(smsData, new DefaultServiceCallback<SMSResponse>(SMSActivity.this, progressBar) {
             @Override
@@ -93,7 +103,6 @@ public class SMSActivity extends BaseActivity {
             }
         });
     }
-
 
 
     public static Intent newIntent(Context context) {

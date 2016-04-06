@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2016, LabsMobile. All rights reserved.
+ */
+
 package com.labsmobile.example.otp;
 
 import android.content.Context;
@@ -27,21 +31,25 @@ import butterknife.OnClick;
  * found out that there is a pending verification process in progress. A TextView changes its text
  * accordingly to show an appropriate message to the user.
  *
- *
- * Created by apapad on 25/03/16.
+ * @author talosdev for LabsMobile
+ * @version 1.0
  */
 public class RequestPendingFragment extends BaseRequestFragment {
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.progressBar_manual)
     ProgressBar progressBarManual;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.prompt_pending_new)
     View promptsNewCode;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.prompt_pending_old)
     View promptsOldCode;
 
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.otp)
     TextView codeEditText;
 
