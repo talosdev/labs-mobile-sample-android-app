@@ -26,10 +26,7 @@
     <string name="test_mode">Test mode</string>
     <string name="unicode">Unicode</string>
     <string name="long_message">Long message</string>
-    <string name="title_activity_otp">Two factor verification</string>
-    <string name="title_activity_two_factor_verification_check">Check verification
-    </string>
-    <string name="title_activity_two_factor_verification_request">Request code</string>
+
     <string name="env_hint">environment (optional)</string>
     <string name="request">Request code via SMS</string>
     <string name="otp_message">Sample app verification code: \u0025CODE\u0025. Have a nice day!</string>
@@ -40,14 +37,12 @@
     <string name="otp">Code</string>
     <string name="ok">OK</string>
     <string name="continueButton">Continue</string>
-    <string name="verificationNOK">We were not able to verify your mobile number, please try again.</string>
     <string name="verificationOK">Your number has been verified!</string>
     <string name="title_activity_two_factor_verification">Two factor verification</string>
     <string name="request_new_code">Request new code</string>
     <string name="request_new_code_prompt">OR request a new code and start the process again</string>
     <string name="check_status">Check verification status</string>
     <string name="request_code_prompt">Your number is not verified. Please use the button below to request a code.</string>
-    <string name="error_shared_prefs">An internal error occurred</string>
     <string name="tfv_prompt_old_1">A pending request for your phone number has been found.</string>
     <string name="tfv_prompt_old_2">You should have received an SMS containing a code. Please enter the code in the box below.</string>
     <string name="code_invalid">The code you have entered is not valid.</string>

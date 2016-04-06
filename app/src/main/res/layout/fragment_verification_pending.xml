@@ -59,14 +59,12 @@
         android:id="@+id/otp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:hint="@string/otp" />
 
     <Button
         android:id="@+id/button_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:text="@string/ok" />
 
     <ProgressBar
@@ -84,7 +82,6 @@
         android:id="@+id/request_new_code_prompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:text="@string/request_new_code_prompt" />
 
 

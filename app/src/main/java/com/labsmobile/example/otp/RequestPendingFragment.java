@@ -36,16 +36,20 @@ import butterknife.OnClick;
  */
 public class RequestPendingFragment extends BaseRequestFragment {
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.progressBar_manual)
     ProgressBar progressBarManual;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.prompt_pending_new)
     View promptsNewCode;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.prompt_pending_old)
     View promptsOldCode;
 
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.otp)
     TextView codeEditText;
 

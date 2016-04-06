@@ -27,18 +27,23 @@ import butterknife.ButterKnife;
  */
 public class CredentialActivity extends AppCompatActivity {
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.continue_button)
     Button continueButton;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.register_button)
     Button registerButton;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.credentials_username)
     EditText usernameEditText;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.credentials_password)
     EditText passwordEditText;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.env)
     EditText envEditText;
 

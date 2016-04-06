@@ -40,12 +40,15 @@ import butterknife.OnClick;
 public class QueriesActivity extends AppCompatActivity {
 
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.progressBar)
     ProgressBar progressBar;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.countries)
     EditText countriesBox;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.list_prices)
     ListView list;
 
@@ -107,8 +110,7 @@ public class QueriesActivity extends AppCompatActivity {
     }
 
     public static Intent newIntent(Context context) {
-        Intent i = new Intent(context, QueriesActivity.class);
-        return i;
+        return new Intent(context, QueriesActivity.class);
     }
 
     private class PriceArrayAdapter extends ArrayAdapter<PriceQueryResponse.CountryPriceInfo>{
@@ -132,7 +134,7 @@ public class QueriesActivity extends AppCompatActivity {
 
             country.setText(getItem(position).getName());
             prefix.setText(getItem(position).getPrefix());
-            price.setText(getItem(position).getPrice() + "");
+            price.setText(String.valueOf(getItem(position).getPrice()));
 
             return rowView;
 

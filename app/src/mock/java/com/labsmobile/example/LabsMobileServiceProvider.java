@@ -89,7 +89,7 @@ public class LabsMobileServiceProvider {
 
     static class MockOTPService implements OTPService {
 
-        Map<String, Boolean> verifications = new HashMap<>();
+        final Map<String, Boolean> verifications = new HashMap<>();
 
 
         @Override

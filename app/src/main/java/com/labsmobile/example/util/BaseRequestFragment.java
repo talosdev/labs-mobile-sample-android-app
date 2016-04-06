@@ -32,13 +32,14 @@ public class BaseRequestFragment extends Fragment {
 
     protected OTPService otpService;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.progressBar)
     protected ProgressBar progressBar;
 
     @Bind(R.id.button_request_code)
     protected Button button;
 
-    protected Navigator navigator;
+    private Navigator navigator;
 
     public BaseRequestFragment() {
         otpService = LabsMobileServiceProvider.provideOTPService();

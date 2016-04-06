@@ -40,12 +40,15 @@ public class CheckStatusFragment extends Fragment {
 
     private final OTPService otpService;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.phone_number)
     EditText phoneNumberEditText;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.progressBar)
     ProgressBar progressBar;
 
+    @SuppressWarnings("WeakerAccess")
     @Bind(R.id.button)
     Button button;
 
@@ -56,8 +59,7 @@ public class CheckStatusFragment extends Fragment {
     }
 
     public static CheckStatusFragment newInstance() {
-        CheckStatusFragment f = new CheckStatusFragment();
-        return f;
+        return new CheckStatusFragment();
     }
 
 
